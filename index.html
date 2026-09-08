@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Math Kids</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <main class="game">
+
+        <!-- LEVEL MENU -->
+        <section id="level-menu">
+
+            <h1>🧮 Math Kids</h1>
+
+            <p class="subtitle">
+                Choose your level!
+            </p>
+
+            <div class="levels">
+
+                <button class="level-button" data-level="easy">
+                    🟢 Easy
+                    <span>Addition 1–10</span>
+                </button>
+
+                <button class="level-button" data-level="medium">
+                    🔵 Medium
+                    <span>Addition & Subtraction</span>
+                </button>
+
+                <button class="level-button" data-level="hard">
+                    🔴 Hard
+                    <span>Multiplication</span>
+                </button>
+
+            </div>
+
+        </section>
+
+
+        <!-- GAME -->
+        <section id="game-screen" class="hidden">
+
+            <h1>🧮 Math Kids</h1>
+
+            <p id="progress">
+                Question 1 / 10
+            </p>
+
+            <div class="question-box">
+                <p id="question">7 + 5 = ?</p>
+            </div>
+
+            <div class="answers">
+
+                <button></button>
+                <button></button>
+                <button></button>
+                <button></button>
+
+            </div>
+
+            <p id="result"></p>
+
+            <p class="score">
+                ⭐ Score: <span id="score">0</span>
+            </p>
+
+        </section>
+
+
+        <!-- RESULT -->
+        <section id="result-screen" class="hidden">
+
+            <h1>🎉 Great Job!</h1>
+
+            <p id="final-score">
+                You scored 0 / 10
+            </p>
+
+            <button id="play-again">
+                🔄 Play Again
+            </button>
+
+        </section>
+
+    </main>
+
+    <script src="script.js"></script>
+
+</body>
+</html>
