@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="id">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -13,86 +14,355 @@
 
     <main class="game">
 
-        <!-- LEVEL MENU -->
-        <section id="level-menu">
+        <!-- SIDEBAR -->
+        <aside class="sidebar">
 
-            <h1>🧮 Math Kids</h1>
+            <div class="brand">
 
-            <p class="subtitle">
-                Choose your level!
-            </p>
+                <div class="brand-mimi">🐱</div>
 
-            <div class="levels">
+                <div>
+                    <h2>Math Kids</h2>
+                    <p>Belajar bersama Mimi</p>
+                </div>
 
-                <button class="level-button" data-level="easy">
-                    🟢 Easy
-                    <span>Addition 1–10</span>
+            </div>
+
+            <div class="sidebar-menu">
+
+                <div class="menu-title">
+                    KELAS
+                </div>
+
+                <button class="sidebar-class locked">
+                    <span>🔒</span>
+                    <div>
+                        <strong>Kelas 1</strong>
+                        <small>Segera hadir</small>
+                    </div>
                 </button>
 
-                <button class="level-button" data-level="medium">
-                    🔵 Medium
-                    <span>Addition & Subtraction</span>
+                <button class="sidebar-class active">
+                    <span>📖</span>
+                    <div>
+                        <strong>Kelas 2</strong>
+                        <small>Ayo belajar!</small>
+                    </div>
                 </button>
 
-                <button class="level-button" data-level="hard">
-                    🔴 Hard
-                    <span>Multiplication</span>
+                <button class="sidebar-class locked">
+                    <span>🔒</span>
+                    <div>
+                        <strong>Kelas 3</strong>
+                        <small>Segera hadir</small>
+                    </div>
+                </button>
+
+                <button class="sidebar-class locked">
+                    <span>🔒</span>
+                    <div>
+                        <strong>Kelas 4</strong>
+                        <small>Segera hadir</small>
+                    </div>
+                </button>
+
+                <button class="sidebar-class locked">
+                    <span>🔒</span>
+                    <div>
+                        <strong>Kelas 5</strong>
+                        <small>Segera hadir</small>
+                    </div>
+                </button>
+
+                <button class="sidebar-class locked">
+                    <span>🔒</span>
+                    <div>
+                        <strong>Kelas 6</strong>
+                        <small>Segera hadir</small>
+                    </div>
                 </button>
 
             </div>
 
-        </section>
-
-
-        <!-- GAME -->
-        <section id="game-screen" class="hidden">
-
-            <h1>🧮 Math Kids</h1>
-
-            <p id="progress">
-                Question 1 / 10
-            </p>
-
-            <div class="question-box">
-                <p id="question">7 + 5 = ?</p>
+            <div class="sidebar-footer">
+                Langkah kecil,<br>
+                prestasi besar 🌿
             </div>
 
-            <div class="answers">
-
-                <button></button>
-                <button></button>
-                <button></button>
-                <button></button>
-
-            </div>
-
-            <p id="result"></p>
-
-            <p class="score">
-                ⭐ Score: <span id="score">0</span>
-            </p>
-
-        </section>
+        </aside>
 
 
-        <!-- RESULT -->
-        <section id="result-screen" class="hidden">
+        <!-- KONTEN UTAMA -->
+        <div class="main-content">
 
-            <h1>🎉 Great Job!</h1>
+            <!-- PILIH KELAS -->
+            <section id="class-menu">
 
-            <p id="final-score">
-                You scored 0 / 10
-            </p>
+                <div class="page-header">
 
-            <button id="play-again">
-                🔄 Play Again
-            </button>
+                    <div>
+                        <p class="eyebrow">SELAMAT DATANG</p>
 
-        </section>
+                        <h1>
+                            🧮 Math Kids
+                        </h1>
+
+                        <p class="subtitle">
+                            Belajar matematika jadi menyenangkan!
+                        </p>
+                    </div>
+
+                </div>
+
+                <div class="section-heading">
+                    <h2>Pilih Kelas</h2>
+                    <p>Mulai belajar sesuai kelasmu.</p>
+                </div>
+
+                <div class="class-list">
+
+                    <button class="class-button" data-class="1">
+                        <span class="class-icon">🎒</span>
+                        <strong>Kelas 1 SD</strong>
+                        <small>Segera hadir</small>
+                    </button>
+
+                    <button class="class-button class-button-active" data-class="2">
+                        <span class="class-icon">📚</span>
+                        <strong>Kelas 2 SD</strong>
+                        <small>Mulai belajar</small>
+                    </button>
+
+                    <button class="class-button" data-class="3">
+                        <span class="class-icon">🎒</span>
+                        <strong>Kelas 3 SD</strong>
+                        <small>Segera hadir</small>
+                    </button>
+
+                    <button class="class-button" data-class="4">
+                        <span class="class-icon">🎒</span>
+                        <strong>Kelas 4 SD</strong>
+                        <small>Segera hadir</small>
+                    </button>
+
+                    <button class="class-button" data-class="5">
+                        <span class="class-icon">🎒</span>
+                        <strong>Kelas 5 SD</strong>
+                        <small>Segera hadir</small>
+                    </button>
+
+                    <button class="class-button" data-class="6">
+                        <span class="class-icon">🎒</span>
+                        <strong>Kelas 6 SD</strong>
+                        <small>Segera hadir</small>
+                    </button>
+
+                </div>
+
+            </section>
+
+
+            <!-- PILIH LATIHAN -->
+            <section id="exercise-menu" class="hidden">
+
+                <button id="back-to-class" class="back-button">
+                    ← Kembali ke kelas
+                </button>
+
+                <div class="page-header">
+
+                    <div>
+
+                        <p class="eyebrow">
+                            KELAS <span id="selected-class">2</span> SD
+                        </p>
+
+                        <h1>Pilih Latihan</h1>
+
+                        <p class="subtitle">
+                            Pilih latihan yang ingin kamu kerjakan.
+                        </p>
+
+                    </div>
+
+                    <div class="score-card">
+                        ⭐
+                        <span>Skor</span>
+                        <strong>0</strong>
+                    </div>
+
+                </div>
+
+
+                <div class="exercise-list">
+
+                    <button class="exercise-button" data-exercise="1">
+
+                        <span class="exercise-number">01</span>
+
+                        <div>
+                            <strong>🌿 Menghitung Benda di Alam</strong>
+                            <small>Hitung jumlah benda yang ada di gambar.</small>
+                        </div>
+
+                        <span class="arrow">→</span>
+
+                    </button>
+
+
+                    <button class="exercise-button" data-exercise="2">
+
+                        <span class="exercise-number">02</span>
+
+                        <div>
+                            <strong>🔢 Nilai Tempat</strong>
+                            <small>Mengenal nilai puluhan dan satuan.</small>
+                        </div>
+
+                        <span class="arrow">→</span>
+
+                    </button>
+
+
+                    <button class="exercise-button" data-exercise="3">
+
+                        <span class="exercise-number">03</span>
+
+                        <div>
+                            <strong>➕ Penjumlahan Puluhan</strong>
+                            <small>Menjumlahkan bilangan puluhan.</small>
+                        </div>
+
+                        <span class="arrow">→</span>
+
+                    </button>
+
+
+                    <button class="exercise-button" data-exercise="4">
+
+                        <span class="exercise-number">04</span>
+
+                        <div>
+                            <strong>➖ Pengurangan Puluhan</strong>
+                            <small>Mengurangkan bilangan puluhan.</small>
+                        </div>
+
+                        <span class="arrow">→</span>
+
+                    </button>
+
+                </div>
+
+            </section>
+
+
+            <!-- GAME -->
+            <section id="game-screen" class="hidden">
+
+                <div class="game-topbar">
+
+                    <button id="back-to-exercise" class="back-button">
+                        ← Pilih latihan
+                    </button>
+
+                    <div class="game-class">
+                        Kelas 2 SD
+                    </div>
+
+                    <div class="game-score">
+                        ⭐ <span id="score">0</span>
+                    </div>
+
+                </div>
+
+
+                <div class="lesson-header">
+
+                    <div>
+                        <span class="lesson-badge">
+                            Latihan 1
+                        </span>
+
+                        <h1 id="exercise-title">
+                            Menghitung Benda di Alam
+                        </h1>
+                    </div>
+
+                    <p id="progress">
+                        Soal 1 / 10
+                    </p>
+
+                </div>
+
+
+                <div class="question-card">
+
+                    <p class="question-instruction">
+                        Hitung benda di bawah ini.
+                    </p>
+
+                    <div class="question-box">
+                        <p id="question">🌿 🌿 🌿 = ?</p>
+                    </div>
+
+                </div>
+
+
+                <div class="answers">
+
+                    <button></button>
+                    <button></button>
+                    <button></button>
+                    <button></button>
+
+                </div>
+
+
+                <!-- MIMI -->
+              <!-- MIMI -->
+<div id="mimi-area">
+
+    <div id="mimi" class="mimi">
+        <img
+            id="mimi-image"
+            src="mimi.png"
+            alt="Mimi"
+        >
+    </div>
+
+    <div class="mimi-message">
+        <strong>Mimi</strong>
+        <p id="mimi-text">Ayo pilih jawabanmu 🌿</p>
+    </div>
+
+</div>  </section>
+
+
+            <!-- HASIL -->
+            <section id="result-screen" class="hidden result-page">
+
+                <div class="result-icon">
+                    🎉
+                </div>
+
+                <h1>Hebat!</h1>
+
+                <p id="final-score">
+                    Nilai kamu: 0 / 10
+                </p>
+
+                <button id="play-again">
+                    🔄 Pilih latihan lagi
+                </button>
+
+            </section>
+
+        </div>
 
     </main>
 
     <script src="script.js"></script>
 
 </body>
+
 </html>
