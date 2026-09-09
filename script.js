@@ -12,7 +12,7 @@ const totalQuestions = 10;
 
 let correctAnswer = null;
 let answering = false;
-
+let placeValueSkill = "tensOnes";
 
 // ========================================
 // ELEMENTS
@@ -23,6 +23,12 @@ const classMenu =
 
 const exerciseMenu =
     document.getElementById("exercise-menu");
+
+const placeValueMenu =
+    document.getElementById("place-value-menu");
+
+const exerciseList =
+    exerciseMenu.querySelector(".exercise-list");
 
 const gameScreen =
     document.getElementById("game-screen");
@@ -38,6 +44,9 @@ const gameClassNumberElement =
 
 const exerciseTitleElement =
     document.getElementById("exercise-title");
+    
+const lessonBadgeElement =
+    document.getElementById("lesson-badge");
 
 const exerciseNumberElement =
     document.getElementById("exercise-number");
@@ -150,13 +159,34 @@ classButtons.forEach((button) => {
 // PILIH LATIHAN
 // ========================================
 
-exerciseButtons.forEach((button) => {
+// HANYA tombol latihan utama
+// BUKAN tombol subskill 2A / 2B / 2C
+const mainExerciseButtons =
+    document.querySelectorAll(
+        ".exercise-button[data-exercise]"
+    );
+
+
+mainExerciseButtons.forEach((button) => {
 
     button.addEventListener("click", () => {
 
         selectedExercise =
             Number(button.dataset.exercise);
 
+
+        // LATIHAN 2 → buka pilihan subskill
+        if (selectedExercise === 2) {
+
+            exerciseList.classList.add("hidden");
+
+            placeValueMenu.classList.remove("hidden");
+
+            return;
+        }
+
+
+        // Latihan 1, 3, 4 langsung mulai
         startExercise();
 
     });
@@ -165,6 +195,40 @@ exerciseButtons.forEach((button) => {
 
 
 // ========================================
+// PILIH SUBSKILL NILAI TEMPAT
+// ========================================
+
+const placeValueButtons =
+    placeValueMenu.querySelectorAll(
+        "[data-place-skill]"
+    );
+
+
+placeValueButtons.forEach((button) => {
+
+    button.addEventListener("click", () => {
+
+        // Simpan subskill
+        placeValueSkill =
+            button.dataset.placeSkill;
+
+
+        // Tutup menu subskill
+        placeValueMenu.classList.add(
+            "hidden"
+        );
+
+
+        // Tetap Latihan 2
+        selectedExercise = 2;
+
+
+        // Mulai soal
+        startExercise();
+
+    });
+
+});// ========================================
 // MULAI LATIHAN
 // ========================================
 
@@ -187,7 +251,15 @@ function startExercise() {
     gameScreen.classList.remove("hidden");
 
     exerciseTitleElement.textContent =
-        exerciseTitles[selectedExercise];
+    exerciseTitles[selectedExercise];
+
+
+if (lessonBadgeElement) {
+
+    lessonBadgeElement.textContent =
+        `Latihan ${selectedExercise}`;
+
+}
 
     if (exerciseNumberElement) {
 
@@ -306,20 +378,54 @@ function generateCountingQuestion() {
 
 // ========================================
 // LATIHAN 2
+// ========================================
+// LATIHAN 2
 // NILAI TEMPAT
 // ========================================
 
 function generatePlaceValueQuestion() {
+
+    if (placeValueSkill === "tensOnes") {
+
+        generateTensOnesQuestion();
+
+    }
+
+    else if (placeValueSkill === "hundreds") {
+
+        generateHundredsQuestion();
+
+    }
+
+    else if (placeValueSkill === "thousands") {
+
+        generateThousandsQuestion();
+
+    }
+
+}
+
+
+
+// ========================================
+// 2A
+// PULUHAN & SATUAN
+// DESAIN LAMA — JANGAN DIUBAH
+// ========================================
+
+function generateTensOnesQuestion() {
 
     const tens =
         Math.floor(
             Math.random() * 5
         ) + 1;
 
+
     const ones =
         Math.floor(
             Math.random() * 10
         );
+
 
     const number =
         tens * 10 + ones;
@@ -334,6 +440,7 @@ function generatePlaceValueQuestion() {
 
 
     let tensHTML = "";
+
 
     for (
         let i = 0;
@@ -359,6 +466,7 @@ function generatePlaceValueQuestion() {
 
     let onesHTML = "";
 
+
     for (
         let i = 0;
         i < ones;
@@ -366,7 +474,9 @@ function generatePlaceValueQuestion() {
     ) {
 
         onesHTML += `
+
             <span class="ones-block"></span>
+
         `;
 
     }
@@ -382,16 +492,21 @@ function generatePlaceValueQuestion() {
                     ${tensHTML}
                 </div>
 
+
                 <div class="ones-area">
                     ${onesHTML}
                 </div>
 
             </div>
 
+
             <div class="place-number-preview">
+
                 Bilangan:
                 <strong>${number}</strong>
+
             </div>
+
 
             <div class="place-instruction">
 
@@ -407,21 +522,24 @@ function generatePlaceValueQuestion() {
     `;
 
 
-    createPlaceValueAnswers();
+    createTensOnesAnswers();
 
 }
 
 
+
 // ========================================
-// PILIHAN NILAI TEMPAT
+// JAWABAN 2A
 // ========================================
 
-function createPlaceValueAnswers() {
+function createTensOnesAnswers() {
 
     restoreNormalAnswerArea();
 
+
     const correctTens =
         correctAnswer.tens;
+
 
     const correctOnes =
         correctAnswer.ones;
@@ -460,6 +578,7 @@ function createPlaceValueAnswers() {
                     return false;
                 }
 
+
                 return index ===
                     self.findIndex(
                         item =>
@@ -479,6 +598,7 @@ function createPlaceValueAnswers() {
             Math.floor(
                 Math.random() * 5
             ) + 1;
+
 
         const randomOnes =
             Math.floor(
@@ -519,7 +639,9 @@ function createPlaceValueAnswers() {
             const answer =
                 answers[index];
 
+
             button.disabled = false;
+
 
             button.textContent =
                 `${answer.tens} puluhan + ${answer.ones} satuan`;
@@ -539,11 +661,598 @@ function createPlaceValueAnswers() {
 }
 
 
+
 // ========================================
-// CEK NILAI TEMPAT
+// 2B
+// RATUSAN
 // ========================================
 
-function checkPlaceValueAnswer(answer) {
+function generateHundredsQuestion() {
+
+    const hundreds =
+        Math.floor(
+            Math.random() * 9
+        ) + 1;
+
+
+    const tens =
+        Math.floor(
+            Math.random() * 10
+        );
+
+
+    const ones =
+        Math.floor(
+            Math.random() * 10
+        );
+
+
+    const number =
+        hundreds * 100 +
+        tens * 10 +
+        ones;
+
+
+    correctAnswer = {
+
+        hundreds: hundreds,
+        tens: tens,
+        ones: ones
+
+    };
+
+
+    // ------------------------------------
+    // BALOK RATUSAN
+    // ------------------------------------
+
+   const hundredsHTML = Array.from(
+    { length: hundreds },
+    () => `
+        <div class="hundreds-block">
+
+            ${Array.from(
+                { length: 100 },
+                () => `<span></span>`
+            ).join("")}
+
+        </div>
+    `
+).join("");
+
+
+    // ------------------------------------
+    // BALOK PULUHAN
+    // ------------------------------------
+
+    let tensHTML = "";
+
+
+    for (
+        let i = 0;
+        i < tens;
+        i++
+    ) {
+
+        tensHTML += `
+
+            <div class="tens-block">
+
+                ${Array.from(
+                    { length: 10 },
+                    () => `<span></span>`
+                ).join("")}
+
+            </div>
+
+        `;
+
+    }
+
+
+    // ------------------------------------
+    // KUBUS SATUAN
+    // ------------------------------------
+
+    let onesHTML = "";
+
+
+    for (
+        let i = 0;
+        i < ones;
+        i++
+    ) {
+
+        onesHTML += `
+
+            <span class="ones-block"></span>
+
+        `;
+
+    }
+
+
+    questionElement.innerHTML = `
+
+        <div class="place-value-question">
+
+            <div class="blocks-area hundreds-layout">
+
+                <div class="hundreds-area">
+
+                    ${hundredsHTML}
+
+                </div>
+
+
+                <div class="tens-area">
+
+                    ${tensHTML}
+
+                </div>
+
+
+                <div class="ones-area">
+
+                    ${onesHTML}
+
+                </div>
+
+            </div>
+
+
+            <div class="place-number-preview">
+
+                Bilangan:
+                <strong>${number}</strong>
+
+            </div>
+
+
+            <div class="place-instruction">
+
+                Berapa
+                <strong>ratusan</strong>,
+                <strong>puluhan</strong>
+                dan
+                <strong>satuan</strong>?
+
+            </div>
+
+        </div>
+
+    `;
+
+
+    createHundredsAnswers();
+
+}
+
+
+
+// ========================================
+// JAWABAN 2B
+// ========================================
+
+function createHundredsAnswers() {
+
+    restoreNormalAnswerArea();
+
+
+    const correct =
+        correctAnswer;
+
+
+    let answers = [
+
+        {
+            hundreds: correct.hundreds,
+            tens: correct.tens,
+            ones: correct.ones
+        },
+
+        {
+            hundreds: correct.hundreds - 1,
+            tens: correct.tens,
+            ones: correct.ones
+        },
+
+        {
+            hundreds: correct.hundreds,
+            tens: (correct.tens + 1) % 10,
+            ones: correct.ones
+        },
+
+        {
+            hundreds: correct.hundreds,
+            tens: correct.tens,
+            ones: (correct.ones + 1) % 10
+        }
+
+    ];
+
+
+    answers =
+        answers.filter(
+            (answer, index, self) => {
+
+                if (answer.hundreds < 1) {
+                    return false;
+                }
+
+
+                return index ===
+                    self.findIndex(
+                        item =>
+                            item.hundreds === answer.hundreds &&
+                            item.tens === answer.tens &&
+                            item.ones === answer.ones
+                    );
+
+            }
+        );
+
+
+    while (
+        answers.length < 4
+    ) {
+
+        const randomAnswer = {
+
+            hundreds:
+                Math.floor(
+                    Math.random() * 9
+                ) + 1,
+
+            tens:
+                Math.floor(
+                    Math.random() * 10
+                ),
+
+            ones:
+                Math.floor(
+                    Math.random() * 10
+                )
+
+        };
+
+
+        const exists =
+            answers.some(
+                answer =>
+                    answer.hundreds === randomAnswer.hundreds &&
+                    answer.tens === randomAnswer.tens &&
+                    answer.ones === randomAnswer.ones
+            );
+
+
+        if (!exists) {
+
+            answers.push(
+                randomAnswer
+            );
+
+        }
+
+    }
+
+
+    answers.sort(
+        () => Math.random() - 0.5
+    );
+
+
+    answerButtons.forEach(
+        (button, index) => {
+
+            const answer =
+                answers[index];
+
+
+            button.disabled = false;
+
+
+            button.textContent =
+                `${answer.hundreds} ratusan + ${answer.tens} puluhan + ${answer.ones} satuan`;
+
+
+            button.onclick = () => {
+
+                checkHundredsAnswer(
+                    answer
+                );
+
+            };
+
+        }
+    );
+
+}
+
+
+
+// ========================================
+// 2C
+// RIBUAN
+// DESAIN PLACE VALUE
+// ========================================
+
+function generateThousandsQuestion() {
+
+    const thousands =
+        Math.floor(
+            Math.random() * 9
+        ) + 1;
+
+
+    const hundreds =
+        Math.floor(
+            Math.random() * 10
+        );
+
+
+    const tens =
+        Math.floor(
+            Math.random() * 10
+        );
+
+
+    const ones =
+        Math.floor(
+            Math.random() * 10
+        );
+
+
+    const number =
+        thousands * 1000 +
+        hundreds * 100 +
+        tens * 10 +
+        ones;
+
+
+    correctAnswer = {
+
+        thousands: thousands,
+        hundreds: hundreds,
+        tens: tens,
+        ones: ones
+
+    };
+
+
+    questionElement.innerHTML = `
+
+        <div class="thousands-question">
+
+            <div class="thousands-number">
+
+                ${number.toLocaleString("id-ID")}
+
+            </div>
+
+
+            <div class="place-value-cards">
+
+                <div class="place-card thousands-card">
+
+                    <strong>Ribuan</strong>
+
+                    <span>🔢</span>
+
+                    <b>${thousands}</b>
+
+                </div>
+
+
+                <div class="place-card hundreds-card">
+
+                    <strong>Ratusan</strong>
+
+                    <span>▦</span>
+
+                    <b>${hundreds}</b>
+
+                </div>
+
+
+                <div class="place-card tens-card">
+
+                    <strong>Puluhan</strong>
+
+                    <span>▥</span>
+
+                    <b>${tens}</b>
+
+                </div>
+
+
+                <div class="place-card ones-card">
+
+                    <strong>Satuan</strong>
+
+                    <span>□</span>
+
+                    <b>${ones}</b>
+
+                </div>
+
+            </div>
+
+
+            <div class="place-instruction">
+
+                Berapa
+                <strong>ribuan</strong>,
+                <strong>ratusan</strong>,
+                <strong>puluhan</strong>
+                dan
+                <strong>satuan</strong>?
+
+            </div>
+
+        </div>
+
+    `;
+
+
+    createThousandsAnswers();
+
+}
+
+
+
+// ========================================
+// JAWABAN 2C
+// ========================================
+
+function createThousandsAnswers() {
+
+    restoreNormalAnswerArea();
+
+
+    const correct =
+        correctAnswer;
+
+
+    let answers = [
+
+        {
+            thousands: correct.thousands,
+            hundreds: correct.hundreds,
+            tens: correct.tens,
+            ones: correct.ones
+        },
+
+        {
+            thousands: correct.thousands,
+            hundreds: (correct.hundreds + 1) % 10,
+            tens: correct.tens,
+            ones: correct.ones
+        },
+
+        {
+            thousands: correct.thousands,
+            hundreds: correct.hundreds,
+            tens: (correct.tens + 1) % 10,
+            ones: correct.ones
+        },
+
+        {
+            thousands: correct.thousands + 1,
+            hundreds: correct.hundreds,
+            tens: correct.tens,
+            ones: correct.ones
+        }
+
+    ];
+
+
+    answers =
+        answers.filter(
+            (answer, index, self) => {
+
+                return index ===
+                    self.findIndex(
+                        item =>
+                            item.thousands === answer.thousands &&
+                            item.hundreds === answer.hundreds &&
+                            item.tens === answer.tens &&
+                            item.ones === answer.ones
+                    );
+
+            }
+        );
+
+
+    while (
+        answers.length < 4
+    ) {
+
+        const randomAnswer = {
+
+            thousands:
+                Math.floor(
+                    Math.random() * 9
+                ) + 1,
+
+            hundreds:
+                Math.floor(
+                    Math.random() * 10
+                ),
+
+            tens:
+                Math.floor(
+                    Math.random() * 10
+                ),
+
+            ones:
+                Math.floor(
+                    Math.random() * 10
+                )
+
+        };
+
+
+        const exists =
+            answers.some(
+                answer =>
+                    answer.thousands === randomAnswer.thousands &&
+                    answer.hundreds === randomAnswer.hundreds &&
+                    answer.tens === randomAnswer.tens &&
+                    answer.ones === randomAnswer.ones
+            );
+
+
+        if (!exists) {
+
+            answers.push(
+                randomAnswer
+            );
+
+        }
+
+    }
+
+
+    answers.sort(
+        () => Math.random() - 0.5
+    );
+
+
+    answerButtons.forEach(
+        (button, index) => {
+
+            const answer =
+                answers[index];
+
+
+            button.disabled = false;
+
+
+            button.textContent =
+                `${answer.thousands} ribuan + ${answer.hundreds} ratusan + ${answer.tens} puluhan + ${answer.ones} satuan`;
+
+
+            button.onclick = () => {
+
+                checkThousandsAnswer(
+                    answer
+                );
+
+            };
+
+        }
+    );
+
+}
+
+
+
+// ========================================
+// CEK 2B
+// ========================================
+
+function checkHundredsAnswer(answer) {
 
     if (answering) {
         return;
@@ -551,9 +1260,46 @@ function checkPlaceValueAnswer(answer) {
 
 
     const isCorrect =
+        answer.hundreds === correctAnswer.hundreds &&
         answer.tens === correctAnswer.tens &&
         answer.ones === correctAnswer.ones;
 
+
+    handlePlaceValueResult(isCorrect);
+
+}
+
+
+
+// ========================================
+// CEK 2C
+// ========================================
+
+function checkThousandsAnswer(answer) {
+
+    if (answering) {
+        return;
+    }
+
+
+    const isCorrect =
+        answer.thousands === correctAnswer.thousands &&
+        answer.hundreds === correctAnswer.hundreds &&
+        answer.tens === correctAnswer.tens &&
+        answer.ones === correctAnswer.ones;
+
+
+    handlePlaceValueResult(isCorrect);
+
+}
+
+
+
+// ========================================
+// HASIL JAWABAN NILAI TEMPAT
+// ========================================
+
+function handlePlaceValueResult(isCorrect) {
 
     if (isCorrect) {
 
@@ -561,8 +1307,10 @@ function checkPlaceValueAnswer(answer) {
 
         score += 10;
 
+
         scoreElement.textContent =
             score;
+
 
         if (menuScoreElement) {
 
@@ -596,7 +1344,9 @@ function checkPlaceValueAnswer(answer) {
 
         answerButtons.forEach(
             button => {
+
                 button.disabled = true;
+
             }
         );
 
@@ -606,7 +1356,6 @@ function checkPlaceValueAnswer(answer) {
             nextQuestion();
 
         }, 800);
-
 
     }
 
@@ -637,6 +1386,29 @@ function checkPlaceValueAnswer(answer) {
 
 }
 
+
+
+// ========================================
+// CEK 2A
+// ========================================
+
+function checkPlaceValueAnswer(answer) {
+
+    if (answering) {
+        return;
+    }
+
+
+    const isCorrect =
+        answer.tens === correctAnswer.tens &&
+        answer.ones === correctAnswer.ones;
+
+
+    handlePlaceValueResult(
+        isCorrect
+    );
+
+}
 
 // ========================================
 // LATIHAN 3
@@ -1974,6 +2746,17 @@ backToExerciseButton.onclick =
         gameScreen.classList.add(
             "hidden"
         );
+
+
+        placeValueMenu.classList.add(
+            "hidden"
+        );
+
+
+        exerciseList.classList.remove(
+            "hidden"
+        );
+
 
         exerciseMenu.classList.remove(
             "hidden"

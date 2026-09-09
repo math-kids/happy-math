@@ -1568,3 +1568,225 @@ span:last-child {
     }
 
 }
+
+/* ========================================
+   SUBSKILL NILAI TEMPAT
+   ======================================== */
+
+.subskill-header {
+    text-align: center;
+    margin: 25px 0 20px;
+}
+
+.subskill-header h2 {
+    margin: 0 0 6px;
+    font-size: 25px;
+    color: #263b32;
+}
+
+.subskill-header p {
+    margin: 0;
+    color: #758075;
+}
+
+
+/* ========================================
+   RATUSAN
+   ======================================== */
+
+.hundreds-layout {
+    width: 100%;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px 30px;
+    align-items: center;
+}
+
+
+.hundreds-area {
+    grid-column: 1 / -1;
+
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+
+    gap: 10px;
+
+    width: 100%;
+    max-width: 570px;
+    margin: 0 auto;
+}
+
+.hundreds-layout .tens-area {
+    justify-content: flex-end;
+}
+
+.hundreds-layout .ones-area {
+    justify-self: start;
+}
+
+
+/* 100 satuan = 1 balok ratusan */
+
+.hundreds-block {
+    width: 105px;
+    height: 105px;
+
+    display: grid;
+    grid-template-columns:
+        repeat(10, 1fr);
+
+    grid-template-rows:
+        repeat(10, 1fr);
+
+    border: 2px solid #71816f;
+    border-radius: 5px;
+
+    background: #dfe8dc;
+
+    overflow: hidden;
+}
+
+
+.hundreds-block span {
+    border-right:
+        1px solid #9aaa97;
+
+    border-bottom:
+        1px solid #9aaa97;
+}
+
+
+.hundreds-block span:nth-child(10n) {
+    border-right: none;
+}
+
+
+.hundreds-block span:nth-last-child(-n + 10) {
+    border-bottom: none;
+}
+
+
+/* ========================================
+   RIBUAN
+   ======================================== */
+
+.thousands-question {
+    width: 100%;
+    text-align: center;
+}
+
+
+.thousands-number {
+    font-size: 48px;
+    font-weight: 800;
+    color: #263b32;
+    margin: 12px 0 22px;
+}
+
+
+.place-value-cards {
+    display: grid;
+
+    grid-template-columns:
+        repeat(4, 1fr);
+
+    gap: 8px;
+
+    max-width: 700px;
+
+    margin: 0 auto 20px;
+}
+
+
+.place-card {
+    min-height: 145px;
+
+    border-radius: 16px;
+
+    padding: 12px 8px;
+
+    display: flex;
+    flex-direction: column;
+
+    align-items: center;
+    justify-content: space-between;
+}
+
+
+.place-card strong {
+    font-size: 15px;
+}
+
+
+.place-card span {
+    font-size: 42px;
+    line-height: 1;
+}
+
+
+.place-card b {
+    font-size: 30px;
+    color: #263b32;
+}
+
+
+.thousands-card {
+    background: #e3efff;
+}
+
+
+.hundreds-card {
+    background: #e4f1e3;
+}
+
+
+.tens-card {
+    background: #fff1c9;
+}
+
+
+.ones-card {
+    background: #f9dddd;
+}
+
+
+@media (max-width: 700px) {
+
+    .hundreds-layout {
+        gap: 18px;
+    }
+
+
+    .hundreds-block {
+        width: 80px;
+        height: 80px;
+    }
+
+
+    .place-value-cards {
+        gap: 5px;
+    }
+
+
+    .place-card {
+        min-height: 120px;
+    }
+
+
+    .place-card span {
+        font-size: 30px;
+    }
+
+
+    .place-card b {
+        font-size: 24px;
+    }
+
+
+    .thousands-number {
+        font-size: 40px;
+    }
+
+}
