@@ -293,8 +293,6 @@ function generateCountingQuestion() {
             ${objectHTML}
         </div>
 
-        <div> = ?</div>
-
     `;
 
 
