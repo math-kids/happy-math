@@ -1790,3 +1790,340 @@ span:last-child {
     }
 
 }
+
+/* ========================================
+   MATH KIDS — RESPONSIVE SYSTEM
+   ======================================== */
+
+/* TABLET */
+@media (max-width: 800px) {
+
+    body {
+        padding: 10px;
+    }
+
+    .game {
+        width: 100%;
+        min-height: auto;
+        grid-template-columns: 1fr;
+    }
+
+    .sidebar {
+        display: none;
+    }
+
+    .main-content {
+        width: 100%;
+        padding: 30px 22px;
+    }
+
+    .page-header {
+        margin-bottom: 25px;
+    }
+
+    .question-box {
+        width: 100%;
+        padding: 18px;
+    }
+
+    .answers {
+        gap: 10px;
+    }
+
+}
+
+
+/* ========================================
+   MOBILE
+   ======================================== */
+
+@media (max-width: 600px) {
+
+    body {
+        padding: 8px;
+    }
+
+    .game {
+        border-radius: 22px;
+    }
+
+    .main-content {
+        padding: 24px 15px;
+    }
+
+    h1 {
+        font-size: clamp(26px, 7vw, 32px);
+    }
+
+    .subtitle {
+        font-size: 14px;
+    }
+
+
+    /* HEADER */
+
+    .lesson-header {
+        align-items: flex-start;
+        flex-direction: column;
+        gap: 8px;
+    }
+
+    .lesson-header h1 {
+        font-size: clamp(20px, 5.5vw, 25px);
+    }
+
+
+    /* QUESTION */
+
+    .question-card {
+        padding: 18px 14px 22px;
+        border-radius: 20px;
+    }
+
+    .question-box {
+        padding: 15px 8px;
+        border-radius: 17px;
+    }
+
+    #question {
+        font-size: clamp(28px, 8vw, 38px);
+    }
+
+
+    /* ANSWERS */
+
+    .answers {
+        grid-template-columns: 1fr;
+        gap: 9px;
+    }
+
+    .answers button {
+        min-height: 58px;
+        font-size: 20px;
+        padding: 12px;
+    }
+
+
+    /* MIMI */
+
+    #mimi-area {
+        gap: 10px;
+        margin-top: 18px;
+    }
+
+    #mimi-image {
+        width: 62px;
+        height: 62px;
+    }
+
+    .mimi-message {
+        min-width: 0;
+        width: 100%;
+        padding: 10px 13px;
+    }
+
+
+    /* ========================================
+       2B — RATUSAN
+       ======================================== */
+
+    .hundreds-layout {
+        width: 100%;
+        grid-template-columns: 1fr;
+        gap: 16px;
+    }
+
+    .hundreds-area {
+        grid-column: 1;
+        width: 100%;
+        max-width: 100%;
+        gap: 7px;
+    }
+
+    .hundreds-block {
+        width: clamp(62px, 20vw, 80px);
+        height: clamp(62px, 20vw, 80px);
+    }
+
+    .hundreds-layout .tens-area {
+        justify-content: center;
+        flex-wrap: wrap;
+    }
+
+    .hundreds-layout .ones-area {
+        justify-self: center;
+    }
+
+
+    /* ========================================
+       2A — PULUHAN & SATUAN
+       ======================================== */
+
+    .blocks-area {
+        width: 100%;
+        gap: 20px;
+        padding: 18px 5px;
+    }
+
+    .tens-area {
+        gap: 5px;
+        justify-content: center;
+        flex-wrap: wrap;
+    }
+
+    .tens-block {
+        width: 13px;
+        height: 88px;
+    }
+
+    .ones-area {
+        width: 110px;
+        justify-content: center;
+    }
+
+    .ones-block {
+        width: 19px;
+        height: 19px;
+    }
+
+
+    /* ========================================
+       3 & 4 — EQUATION
+       ======================================== */
+
+    .tens-equation {
+        width: 100%;
+        gap: 8px;
+        padding: 10px 3px;
+        min-height: 150px;
+    }
+
+    .digital-blocks {
+        gap: 3px;
+        min-height: 85px;
+    }
+
+    .digital-tens-block {
+        width: 11px;
+        height: 85px;
+    }
+
+    .big-operator,
+    .big-equals {
+        font-size: clamp(28px, 8vw, 36px);
+    }
+
+    .tens-group strong {
+        font-size: 17px;
+    }
+
+
+    /* INPUT 3 & 4 */
+
+    .typed-answer-row {
+        width: 100%;
+        gap: 7px;
+    }
+
+    .typed-answer {
+        width: min(190px, 55vw);
+        height: 68px;
+        font-size: 36px;
+    }
+
+    .typed-equals {
+        font-size: 30px;
+    }
+
+    .typed-answer-row .check-writing {
+        height: 52px;
+        padding: 0 12px;
+        font-size: 13px;
+    }
+
+}
+
+
+/* ========================================
+   SMALL PHONE
+   ======================================== */
+
+@media (max-width: 400px) {
+
+    body {
+        padding: 5px;
+    }
+
+    .main-content {
+        padding: 20px 10px;
+    }
+
+    .question-card {
+        padding-left: 10px;
+        padding-right: 10px;
+    }
+
+    #question {
+        font-size: 28px;
+    }
+
+    .answers button {
+        min-height: 55px;
+        font-size: 18px;
+    }
+
+    #mimi-image {
+        width: 55px;
+        height: 55px;
+    }
+
+    .mimi-message p {
+        font-size: 13px;
+    }
+
+    .hundreds-block {
+        width: 62px;
+        height: 62px;
+    }
+
+    .tens-block {
+        width: 11px;
+        height: 75px;
+    }
+
+    .ones-block {
+        width: 17px;
+        height: 17px;
+    }
+
+}
+
+/* =================================
+   MIMI DI ATAS SOAL
+   ================================= */
+
+#game-screen:not(.hidden) {
+    display: flex;
+    flex-direction: column;
+}
+
+/* Urutan tampilan */
+#game-screen .game-topbar {
+    order: 1;
+}
+
+#game-screen .lesson-header {
+    order: 2;
+}
+
+#game-screen #mimi-area {
+    order: 3;
+}
+
+#game-screen .question-card {
+    order: 4;
+}
+
+#game-screen .answers {
+    order: 5;
+}
