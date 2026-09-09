@@ -2164,3 +2164,31 @@ span:last-child {
     line-height: 1.35;
     color: #718078;
 }
+
+/* =================================
+   MIMI MATEMATIKA - BRAND TITLE
+   ================================= */
+
+.main-brand-title {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.main-brand-title img {
+    width: 58px;
+    height: 58px;
+    object-fit: contain;
+    display: block;
+}
+
+@media (max-width: 500px) {
+    .main-brand-title {
+        gap: 10px;
+    }
+
+    .main-brand-title img {
+        width: 52px;
+        height: 52px;
+    }
+}
