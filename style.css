@@ -2127,3 +2127,40 @@ span:last-child {
 #game-screen .answers {
     order: 5;
 }
+/* =================================
+   BRAND MIMI MATEMATIKA
+   ================================= */
+
+.brand {
+    align-items: center;
+    gap: 12px;
+}
+
+.brand-mimi {
+    width: 58px;
+    height: 58px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.brand-mimi img {
+    width: 58px;
+    height: 58px;
+    object-fit: contain;
+    display: block;
+}
+
+.brand h2 {
+    font-size: 22px;
+    line-height: 1.1;
+    color: #30483d;
+}
+
+.brand p {
+    margin-top: 4px;
+    font-size: 12px;
+    line-height: 1.35;
+    color: #718078;
+}
