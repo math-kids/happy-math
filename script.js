@@ -2720,19 +2720,15 @@ function showResult() {
 
 backToClassButton.onclick =
     function () {
+        gameScreen.classList.add("hidden");
 
-        gameScreen.classList.add(
-            "hidden"
-        );
+        exerciseMenu.classList.add("hidden");
 
-        exerciseMenu.classList.add(
-            "hidden"
-        );
+        // Reset menu latihan
+        placeValueMenu.classList.add("hidden");
+        exerciseList.classList.remove("hidden");
 
-        classMenu.classList.remove(
-            "hidden"
-        );
-
+        classMenu.classList.remove("hidden");
     };
 
 
