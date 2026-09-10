@@ -26,6 +26,7 @@
     <link rel="icon" type="image/png" href="mimimatematika.png">
     <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
 
     <main class="game">
@@ -33,16 +34,16 @@
         <!-- SIDEBAR -->
         <aside class="sidebar">
 
-           <div class="brand">
-    <div class="brand-mimi">
-        <img src="mimi.png" alt="Mimi, teman belajar matematika">
-    </div>
+            <div class="brand">
+                <div class="brand-mimi">
+                    <img src="mimi.png" alt="Mimi, teman belajar matematika">
+                </div>
 
-    <div>
-        <h2>Mimi Matematika</h2>
-        
-    </div>
-</div>
+                <div>
+                    <h2>Mimi Matematika</h2>
+
+                </div>
+            </div>
 
             <div class="sidebar-menu">
 
@@ -120,13 +121,13 @@
                         <p class="eyebrow">SELAMAT DATANG</p>
 
                         <h1 class="main-brand-title">
-    <img src="mimi.png" alt="Mimi">
-    <span>Mimi Matematika</span>
-</h1>
+                            <img src="mimi.png" alt="Mimi">
+                            <span>Mimi Matematika</span>
+                        </h1>
 
-<p class="subtitle">
-    Belajar matematika bareng Mimi!
-</p>
+                        <p class="subtitle">
+                            Belajar matematika bareng Mimi!
+                        </p>
                     </div>
 
                 </div>
@@ -211,7 +212,7 @@
                 </div>
 
 
-                <div class="exercise-list">
+                <div id="main-exercise-list" class="exercise-list">
 
                     <button class="exercise-button" data-exercise="1">
 
@@ -240,10 +241,22 @@
 
                     </button>
 
+                    <button class="exercise-button" data-exercise="5">
+
+                        <span class="exercise-number">03</span>
+
+                        <div>
+                            <strong>🧮 Penjumlahan Satuan</strong>
+                            <small>Menjumlahkan bilangan puluhan.</small>
+                        </div>
+
+                        <span class="arrow">→</span>
+
+                    </button>
 
                     <button class="exercise-button" data-exercise="3">
 
-                        <span class="exercise-number">03</span>
+                        <span class="exercise-number">04</span>
 
                         <div>
                             <strong>➕ Penjumlahan Puluhan</strong>
@@ -254,10 +267,23 @@
 
                     </button>
 
+                    <button class="exercise-button" data-exercise="6">
+
+                        <span class="exercise-number">05</span>
+
+                        <div>
+                            <strong>🧱 Penjumlahan Bersusun</strong>
+                            <small>Menjumlahkan bilangan secara bersusun.</small>
+                        </div>
+
+                        <span class="arrow">→</span>
+
+                    </button>
+
 
                     <button class="exercise-button" data-exercise="4">
 
-                        <span class="exercise-number">04</span>
+                        <span class="exercise-number">06</span>
 
                         <div>
                             <strong>➖ Pengurangan Puluhan</strong>
@@ -271,78 +297,230 @@
                 </div>
                 <div id="place-value-menu" class="hidden">
 
+                    <div class="subskill-header">
+
+                        <h2>🔢 Nilai Tempat</h2>
+
+                        <p>
+                            Pilih bagian yang ingin kamu pelajari.
+                        </p>
+
+                    </div>
+
+                    <div class="exercise-list">
+
+                        <button class="exercise-button" data-place-skill="tensOnes">
+
+                            <span class="exercise-number">
+                                2A
+                            </span>
+
+                            <div>
+
+                                <strong>
+                                    🔟 Puluhan & Satuan
+                                </strong>
+
+                                <small>
+                                    Belajar angka 10–99 dengan balok.
+                                </small>
+
+                            </div>
+
+                            <span class="arrow">
+                                →
+                            </span>
+
+                        </button>
+
+
+                        <button class="exercise-button" data-place-skill="hundreds">
+
+                            <span class="exercise-number">
+                                2B
+                            </span>
+
+                            <div>
+
+                                <strong>
+                                    💯 Ratusan
+                                </strong>
+
+                                <small>
+                                    Belajar angka 100–999 dengan balok.
+                                </small>
+
+                            </div>
+
+                            <span class="arrow">
+                                →
+                            </span>
+
+                        </button>
+
+
+
+
+                    </div>
+
+                </div>
+
+                <div id="addition-menu" class="hidden">
+
+                    <div class="subskill-header">
+
+                        <h2>Penjumlahan Satuan</h2>
+
+                        <p>
+                            Pilih bagian yang ingin kamu pelajari.
+                        </p>
+
+                    </div>
+
+
+                    <div class="exercise-list">
+
+
+                        <!-- 03A -->
+                        <button class="exercise-button" data-addition-skill="basic">
+
+                            <span class="exercise-number">
+                                3A
+                            </span>
+
+                            <div>
+
+                                <strong>
+                                    🧮 Penjumlahan sampai 10
+                                </strong>
+
+                                <small>Latihan penjumlahan dengan hasil sampai 10.</small>
+
+                            </div>
+
+                            <span class="arrow">
+                                →
+                            </span>
+
+                        </button>
+
+
+                        <!-- 03B -->
+
+
+                        <!-- 03C -->
+                        <button class="exercise-button" data-addition-skill="to18">
+
+                            <span class="exercise-number">
+                                3B
+                            </span>
+
+                            <div>
+
+                                <strong>
+                                    🔢 Penjumlahan sampai 18
+                                </strong>
+
+                                <small>
+                                    Latihan penjumlahan dengan hasil sampai 18.
+                                </small>
+
+                            </div>
+
+                            <span class="arrow">
+                                →
+                            </span>
+
+                        </button>
+
+
+                        <!-- 03D -->
+                        <button class="exercise-button" data-addition-skill="challenge">
+
+                            <span class="exercise-number">
+                                3C
+                            </span>
+
+                            <div>
+
+                                <strong>
+                                    🧠 Tantangan Penjumlahan
+                                </strong>
+
+                                <small>
+                                    Latih kemampuan berpikir dan memahami angka.
+                                </small>
+
+                            </div>
+
+                            <span class="arrow">
+                                →
+                            </span>
+
+                        </button>
+
+
+                    </div>
+
+                </div>
+
+                <div id="stacked-addition-menu" class="exercise-list hidden">
+
     <div class="subskill-header">
 
-        <h2>🔢 Nilai Tempat</h2>
+    <h2>➕ Penjumlahan Bersusun</h2>
 
-        <p>
-            Pilih bagian yang ingin kamu pelajari.
-        </p>
+    <p>
+        Pilih bagian yang ingin kamu pelajari.
+    </p>
 
-    </div>
+</div>
+    <button
+        type="button"
+        class="exercise-button"
+        data-stacked-addition-skill="no-carry"
+    >
+        <span class="exercise-number">05A</span>
 
+        <div>
+            <strong>Penjumlahan Bersusun Tanpa Menyimpan</strong>
+            <small>Menjumlahkan bilangan bersusun tanpa menyimpan.</small>
+        </div>
 
-    <div class="exercise-list">
-
-        <button
-            class="exercise-button"
-            data-place-skill="tensOnes"
-        >
-
-            <span class="exercise-number">
-                2A
-            </span>
-
-            <div>
-
-                <strong>
-                    🔟 Puluhan & Satuan
-                </strong>
-
-                <small>
-                    Belajar angka 10–99 dengan balok.
-                </small>
-
-            </div>
-
-            <span class="arrow">
-                →
-            </span>
-
-        </button>
+        <span class="arrow">→</span>
+    </button>
 
 
-        <button
-            class="exercise-button"
-            data-place-skill="hundreds"
-        >
+    <button
+        type="button"
+        class="exercise-button"
+        data-stacked-addition-skill="carry"
+    >
+        <span class="exercise-number">05B</span>
 
-            <span class="exercise-number">
-                2B
-            </span>
+        <div>
+            <strong>Penjumlahan Bersusun Dengan Menyimpan</strong>
+            <small>Menjumlahkan bilangan bersusun dengan menyimpan.</small>
+        </div>
 
-            <div>
-
-                <strong>
-                    💯 Ratusan
-                </strong>
-
-                <small>
-                    Belajar angka 100–999 dengan balok.
-                </small>
-
-            </div>
-
-            <span class="arrow">
-                →
-            </span>
-
-        </button>
+        <span class="arrow">→</span>
+    </button>
 
 
-        
+    <button
+        type="button"
+        class="exercise-button"
+        data-stacked-addition-skill="word-problem"
+    >
+        <span class="exercise-number">05C</span>
 
-    </div>
+        <div>
+            <strong>Soal Cerita</strong>
+            <small>Menyelesaikan soal cerita penjumlahan.</small>
+        </div>
+
+        <span class="arrow">→</span>
+    </button>
 
 </div>
 
@@ -373,8 +551,8 @@
 
                     <div>
                         <span class="lesson-badge" id="lesson-badge">
-    Latihan 1
-</span>
+                            Latihan 1
+                        </span>
 
                         <h1 id="exercise-title">
                             Menghitung Benda di Alam
@@ -390,9 +568,12 @@
 
                 <div class="question-card">
 
-                    <p class="question-instruction">
-                        Hitung benda di bawah ini.
-                    </p>
+                    <p
+    id="question-instruction"
+    class="question-instruction"
+>
+    Hitung benda di bawah ini.
+</p>
 
                     <div class="question-box">
                         <p id="question">🌿 🌿 🌿 = ?</p>
@@ -412,23 +593,20 @@
 
 
                 <!-- MIMI -->
-              <!-- MIMI -->
-<div id="mimi-area">
+                <!-- MIMI -->
+                <div id="mimi-area">
 
-    <div id="mimi" class="mimi">
-        <img
-            id="mimi-image"
-            src="mimi.png"
-            alt="Mimi"
-        >
-    </div>
+                    <div id="mimi" class="mimi">
+                        <img id="mimi-image" src="mimi.png" alt="Mimi">
+                    </div>
 
-    <div class="mimi-message">
-        <strong>Mimi</strong>
-        <p id="mimi-text">Ayo pilih jawabanmu 🌿</p>
-    </div>
+                    <div class="mimi-message">
+                        <strong>Mimi</strong>
+                        <p id="mimi-text">Ayo pilih jawabanmu 🌿</p>
+                    </div>
 
-</div>  </section>
+                </div>
+            </section>
 
 
             <!-- HASIL -->

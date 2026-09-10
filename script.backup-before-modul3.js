@@ -1,4 +1,4 @@
-﻿// ========================================
+// ========================================
 // MATH KIDS
 // ========================================
 
@@ -14,8 +14,6 @@ let correctAnswer = null;
 let answering = false;
 let placeValueSkill = "tensOnes";
 let additionSkill = "basic";
-let stackedAdditionSkill = "no-carry";
-
 // ========================================
 // ELEMENTS
 // ========================================
@@ -29,16 +27,8 @@ const exerciseMenu =
 const placeValueMenu =
     document.getElementById("place-value-menu");
 
-const additionMenu =
-    document.getElementById("addition-menu");
-
-const stackedAdditionMenu =
-    document.getElementById("stacked-addition-menu");
-
 const exerciseList =
-    exerciseMenu.querySelector(
-        "#main-exercise-list"
-    );
+    exerciseMenu.querySelector(".exercise-list");
 
 const gameScreen =
     document.getElementById("game-screen");
@@ -54,7 +44,7 @@ const gameClassNumberElement =
 
 const exerciseTitleElement =
     document.getElementById("exercise-title");
-
+    
 const lessonBadgeElement =
     document.getElementById("lesson-badge");
 
@@ -63,9 +53,6 @@ const exerciseNumberElement =
 
 const questionElement =
     document.getElementById("question");
-
-const questionInstructionElement =
-    document.getElementById("question-instruction");
 
 const scoreElement =
     document.getElementById("score");
@@ -118,13 +105,13 @@ const playAgainButton =
 
 const exerciseTitles = {
 
-   
     1: "🌿 Menghitung Benda di Alam",
+
     2: "🔢 Nilai Tempat",
-    3: "➕ Penjumlahan Puluhan",
-    4: "➖ Pengurangan Puluhan",
-    5: "🧮 Penjumlahan Satuan",
-    6: "📝 Penjumlahan Bersusun"
+
+    3: "➕ Penjumlahan Satuan",
+
+    4: "➖ Pengurangan Puluhan"
 
 };
 
@@ -186,37 +173,18 @@ mainExerciseButtons.forEach((button) => {
 
         selectedExercise =
             Number(button.dataset.exercise);
-        
-            selectedExercise = Number(button.dataset.exercise);
-
-        // Tutup semua submenu terlebih dahulu
-        placeValueMenu.classList.add("hidden");
-        additionMenu.classList.add("hidden");
-        stackedAdditionMenu.classList.add("hidden");
 
 
         // LATIHAN 2 → buka pilihan subskill
         if (selectedExercise === 2) {
 
             exerciseList.classList.add("hidden");
+
             placeValueMenu.classList.remove("hidden");
 
             return;
         }
 
-        // LATIHAN 5 → buka pilihan subskill Penjumlahan Satuan
-        if (selectedExercise === 5) {
-            exerciseList.classList.add("hidden");
-            additionMenu.classList.remove("hidden");
-            return;
-        }
-
-        // LATIHAN 6 → buka pilihan subskill Penjumlahan Bersusun
-        if (selectedExercise === 6) {
-            exerciseList.classList.add("hidden");
-            stackedAdditionMenu.classList.remove("hidden");
-            return; 
-        }
 
         // Latihan 1, 3, 4 langsung mulai
         startExercise();
@@ -260,62 +228,7 @@ placeValueButtons.forEach((button) => {
 
     });
 
-});
-
-// ========================================
-// PILIH SUBSKILL PENJUMLAHAN
-// ========================================
-
-const additionButtons =
-    additionMenu.querySelectorAll(
-        "[data-addition-skill]"
-    );
-
-additionButtons.forEach((button) => {
-
-    button.addEventListener("click", () => {
-
-        additionSkill =
-            button.dataset.additionSkill;
-
-        additionMenu.classList.add("hidden");
-
-        selectedExercise = 5;
-
-        startExercise();
-
-    });
-
-});
-
-// ========================================
-// PILIH SUBSKILL PENJUMLAHAN BERSUSUN
-// ========================================
-
-const stackedAdditionButtons =
-    stackedAdditionMenu.querySelectorAll(
-        "[data-stacked-addition-skill]"
-    );
-
-stackedAdditionButtons.forEach((button) => {
-
-    button.addEventListener("click", () => {
-
-        stackedAdditionSkill =
-            button.dataset.stackedAdditionSkill;
-
-        stackedAdditionMenu.classList.add("hidden");
-
-        selectedExercise = 6;
-
-        startExercise();
-
-    });
-
-});
-
-
-// ========================================
+});// ========================================
 // MULAI LATIHAN
 // ========================================
 
@@ -337,59 +250,14 @@ function startExercise() {
 
     gameScreen.classList.remove("hidden");
 
-    if (questionInstructionElement) {
-
-    questionInstructionElement.classList.toggle(
-        "hidden",
-        selectedExercise !== 1
-    );
-
-}
-
-    if (selectedExercise === 5) {
-
-        const additionTitles = {
-            basic: "🔟 Penjumlahan sampai 10",
-            to10: "🔟 Penjumlahan sampai 10",
-            to18: "🔢 Penjumlahan sampai 18",
-            challenge: "🧠 Tantangan Penjumlahan"
-        };
-
-        exerciseTitleElement.textContent =
-            additionTitles[additionSkill];
-
-    } else {
-
-        exerciseTitleElement.textContent =
-            exerciseTitles[selectedExercise];
-
-    }
+    exerciseTitleElement.textContent =
+    exerciseTitles[selectedExercise];
 
 
-   if (lessonBadgeElement) {
+if (lessonBadgeElement) {
 
-    if (selectedExercise === 6) {
-
-        const stackedBadges = {
-            "no-carry": "Latihan 05A",
-            "carry": "Latihan 05B",
-            "word-problem": "Latihan 05C"
-        };
-
-        lessonBadgeElement.textContent =
-            stackedBadges[stackedAdditionSkill];
-
-    } else {
-
-        lessonBadgeElement.textContent =
-            `Latihan ${
-                selectedExercise === 3 ? 4 :
-                selectedExercise === 4 ? 6 :
-                selectedExercise === 5 ? 3 :
-                selectedExercise
-            }`;
-
-    }
+    lessonBadgeElement.textContent =
+        `Latihan ${selectedExercise}`;
 
 }
 
@@ -400,9 +268,9 @@ function startExercise() {
 
     }
 
-    //setMimiMessage(
-    //    "Ayo pilih jawabanmu 🌿"
-    //    );
+    setMimiMessage(
+        "Ayo pilih jawabanmu 🌿"
+    );
 
     generateQuestion();
 
@@ -422,7 +290,7 @@ function generateQuestion() {
     progressElement.textContent =
         `Soal ${questionNumber} / ${totalQuestions}`;
 
-    //resetMimi();
+    resetMimi();
 
 
     if (selectedExercise === 1) {
@@ -438,16 +306,6 @@ function generateQuestion() {
     }
 
     else if (selectedExercise === 3) {
-    
-        generateTensAdditionQuestion();
-    
-    }
-
-    else if (selectedExercise === 6) {
-    generateStackedAdditionQuestion();
-    }
-
-    else if (selectedExercise === 5) {
 
         generateAdditionQuestion();
 
@@ -480,9 +338,9 @@ function generateCountingQuestion() {
 
     const object =
         objects[
-        Math.floor(
-            Math.random() * objects.length
-        )
+            Math.floor(
+                Math.random() * objects.length
+            )
         ];
 
     const amount =
@@ -595,9 +453,9 @@ function generateTensOnesQuestion() {
             <div class="tens-block">
 
                 ${Array.from(
-            { length: 10 },
-            () => `<span></span>`
-        ).join("")}
+                    { length: 10 },
+                    () => `<span></span>`
+                ).join("")}
 
             </div>
 
@@ -848,19 +706,19 @@ function generateHundredsQuestion() {
     // BALOK RATUSAN
     // ------------------------------------
 
-    const hundredsHTML = Array.from(
-        { length: hundreds },
-        () => `
+   const hundredsHTML = Array.from(
+    { length: hundreds },
+    () => `
         <div class="hundreds-block">
 
             ${Array.from(
-            { length: 100 },
-            () => `<span></span>`
-        ).join("")}
+                { length: 100 },
+                () => `<span></span>`
+            ).join("")}
 
         </div>
     `
-    ).join("");
+).join("");
 
 
     // ------------------------------------
@@ -881,9 +739,9 @@ function generateHundredsQuestion() {
             <div class="tens-block">
 
                 ${Array.from(
-            { length: 10 },
-            () => `<span></span>`
-        ).join("")}
+                    { length: 10 },
+                    () => `<span></span>`
+                ).join("")}
 
             </div>
 
@@ -1554,249 +1412,21 @@ function checkPlaceValueAnswer(answer) {
 
 // ========================================
 // LATIHAN 3
-// PENJUMLAHAN SATUAN
+// PENJUMLAHAN PULUHAN
 // ========================================
 
 function generateAdditionQuestion() {
 
-    if (additionSkill === "basic") {
-
-        let number1;
-        let number2;
-
-        do {
-            number1 = Math.floor(Math.random() * 10);
-            number2 = Math.floor(Math.random() * 10);
-        } while (number1 + number2 > 10);
-
-        correctAnswer =
-            number1 + number2;
-
-        createAdditionWorksheet(
-            number1,
-            number2
-        );
-
-    }
-
-    else if (additionSkill === "to10") {
-
-        let number1;
-        let number2;
-
-        do {
-
-            number1 =
-                Math.floor(Math.random() * 9) + 1;
-
-            number2 =
-                Math.floor(Math.random() * 9) + 1;
-
-        } while (
-            number1 + number2 < 5 ||
-            number1 + number2 > 10
-        );
-
-        correctAnswer =
-            number1 + number2;
-
-        createAdditionWorksheet(
-            number1,
-            number2
-        );
-    }
-
-    else if (additionSkill === "to18") {
-
-        let number1;
-        let number2;
-
-        do {
-
-            number1 =
-                Math.floor(Math.random() * 9) + 1;
-
-            number2 =
-                Math.floor(Math.random() * 9) + 1;
-
-        } while (
-            number1 + number2 <= 10 ||
-            number1 + number2 > 18
-        );
-
-        correctAnswer =
-            number1 + number2;
-
-        createAdditionWorksheet(
-            number1,
-            number2
-        );
-    }
-
-    else if (additionSkill === "challenge") {
-
-    let number1;
-    let missingNumber;
-    let total;
-
-    do {
-
-        number1 =
-            Math.floor(Math.random() * 9) + 1;
-
-        missingNumber =
-            Math.floor(Math.random() * 9) + 1;
-
-        total =
-            number1 + missingNumber;
-
-    } while (total > 18);
-
-    correctAnswer =
-        missingNumber;
-
-    createMissingAdditionWorksheet(
-        number1,
-        total
-    );
-}
-
-}
-// ========================================
-// WORKSHEET PENJUMLAHAN SATUAN
-// MODUL 3
-// ========================================
-
-function createAdditionWorksheet(
-    number1,
-    number2
-) {
-
-    // Sembunyikan pilihan jawaban biasa
-    hideNormalAnswerArea();
-
-    // Tampilkan soal
-    questionElement.innerHTML = `
-
-        <div class="addition-skill-worksheet">
-
-            <div class="addition-problem">
-
-    <span>${number1}</span>
-
-    <span class="addition-operator">+</span>
-
-    <span>${number2}</span>
-
-    <span class="addition-equals">=</span>
-
-    <input
-        id="typed-answer"
-        class="typed-answer"
-        type="text"
-        inputmode="numeric"
-        autocomplete="off"
-        maxlength="2"
-        placeholder="?"
-        aria-label="Ketik jawaban"
-    >
-
-    <button
-        id="check-writing"
-        class="check-writing addition"
-        type="button"
-    >
-        Cek Jawaban
-        <span>▶</span>
-    </button>
-
-</div>
-
-<div class="typed-answer-hint">
-    🔢 Ketik jawabanmu di kotak
-</div>
-
-        </div>
-
-    `;
-
-    // Aktifkan sistem input yang sudah ada
-    setupTypedAnswer(correctAnswer);
-
-}
-
-function createMissingAdditionWorksheet(
-    number1,
-    total
-) {
-
-    hideNormalAnswerArea();
-
-    questionElement.innerHTML = `
-
-        <div class="addition-skill-worksheet">
-
-            <div class="addition-problem">
-
-                <span>${number1}</span>
-
-                <span class="addition-operator">+</span>
-
-                <span class="missing-number">?</span>
-
-                <span class="addition-operator">=</span>
-
-                <span>${total}</span>
-
-            </div>
-
-            <div class="typed-answer-row">
-
-                <input
-                    id="typed-answer"
-                    class="typed-answer"
-                    type="text"
-                    inputmode="numeric"
-                    autocomplete="off"
-                    maxlength="2"
-                    placeholder="?"
-                    aria-label="Ketik jawaban"
-                >
-
-                <button
-                    id="check-writing"
-                    class="check-writing addition"
-                    type="button"
-                >
-                    Cek Jawaban
-                    <span>▶</span>
-                </button>
-
-            </div>
-
-            <div class="typed-answer-hint">
-                🔢 Ketik angka yang hilang
-            </div>
-
-        </div>
-
-    `;
-
-    setupTypedAnswer(correctAnswer);
-}
-
-// ========================================
-// LATIHAN 4
-// PENJUMLAHAN PULUHAN
-// ========================================
-
-function generateTensAdditionQuestion() {
-
     const tens1 =
-        Math.floor(Math.random() * 6) + 2;
+        Math.floor(
+            Math.random() * 6
+        ) + 2;
 
     const tens2 =
-        Math.floor(Math.random() * 6) + 1;
+        Math.floor(
+            Math.random() * 6
+        ) + 1;
+
 
     const number1 =
         tens1 * 10;
@@ -1804,8 +1434,10 @@ function generateTensAdditionQuestion() {
     const number2 =
         tens2 * 10;
 
+
     correctAnswer =
         number1 + number2;
+
 
     createTensWorksheet(
         number1,
@@ -1816,299 +1448,9 @@ function generateTensAdditionQuestion() {
 
 }
 
-// ========================================
-// LATIHAN 5
-// PENJUMLAHAN BERSUSUN
-// ========================================
-
-function generateStackedAdditionQuestion() {
-
-    if (stackedAdditionSkill === "no-carry") {
-
-        const tens1 =
-            Math.floor(Math.random() * 6) + 1;
-
-        const ones1 =
-            Math.floor(Math.random() * 5);
-
-        const tens2 =
-            Math.floor(Math.random() * 4) + 1;
-
-        const ones2 =
-            Math.floor(Math.random() * 5);
-
-        const number1 =
-            tens1 * 10 + ones1;
-
-        const number2 =
-            tens2 * 10 + ones2;
-
-        correctAnswer =
-            number1 + number2;
-
-        createStackedAdditionWorksheet(
-            number1,
-            number2,
-            correctAnswer
-        );
-
-    }
-
-    else if (stackedAdditionSkill === "carry") {
-
-        const tens1 =
-            Math.floor(Math.random() * 4) + 1;
-
-        const tens2 =
-            Math.floor(Math.random() * 4) + 1;
-
-        const ones1 =
-            Math.floor(Math.random() * 5) + 5;
-
-        const ones2 =
-            Math.floor(Math.random() * 5) + 5;
-
-        const number1 =
-            tens1 * 10 + ones1;
-
-        const number2 =
-            tens2 * 10 + ones2;
-
-        correctAnswer =
-            number1 + number2;
-
-        createStackedAdditionWorksheet(
-            number1,
-            number2,
-            correctAnswer
-        );
-
-    }
-
-    else if (stackedAdditionSkill === "word-problem") {
-
-    const names = [
-        "Athar",
-        "Yafie",
-        "Nadine",
-        "Azzam",
-        "Alden",
-        "Jasmine",
-        "Khalif",
-        "Farel",
-        "Bima",
-        "Maryam",
-        "Abynta",
-        "Shabiyya",
-        "Embun",
-        "Aidan",
-        "Bree",
-        "Khailas",
-        "Archie",
-        "Aqila",
-        "Ardhan",
-        "Yusuf"
-    ];
-
-    const name =
-        names[
-            Math.floor(
-                Math.random() * names.length
-            )
-        ];
-
-    const itemIcons = [
-    "🍎",
-    "🍬",
-    "🎈",
-    "🧸",
-    "⭐",
-    "🍪"
-];
-
-const itemIcon =
-    itemIcons[
-        Math.floor(
-            Math.random() * itemIcons.length
-        )
-    ];
-
-    const number1 =
-    Math.floor(Math.random() * 39) + 10;
-
-    const number2 =
-    Math.floor(Math.random() * 30) + 10;
-    correctAnswer =
-        number1 + number2;
-
-    createWordProblemWorksheet(
-    name,
-    number1,
-    number2,
-    correctAnswer,
-    itemIcon
-);
-
-}
-
-}
 
 // ========================================
-// WORKSHEET PENJUMLAHAN BERSUSUN
-// 05A — TANPA MENYIMPAN
-// ========================================
-
-function createStackedAdditionWorksheet(
-    number1,
-    number2,
-    answer
-) {
-
-    hideNormalAnswerArea();
-
-    const onesSum =
-    (number1 % 10) +
-    (number2 % 10);
-
-    const carry = Math.floor(onesSum / 10);
-
-    const carryHTML =
-    stackedAdditionSkill === "carry" && carry === 1
-        ? `
-            <div class="stacked-carry">
-                <span></span>
-                <strong>¹</strong>
-            </div>
-        `
-        : "";
-    
-    questionElement.innerHTML = `
-
-        <div class="stacked-addition-worksheet">
-
-            <div class="stacked-addition-problem">
-
-            ${carryHTML}
-
-                
-
-                <div class="stacked-number">
-                    <span></span>
-                    <strong>${number1}</strong>
-                </div>
-
-                <div class="stacked-number">
-                    <span>+</span>
-                    <strong>${number2}</strong>
-                </div>
-
-                <div class="stacked-line"></div>
-
-                <div class="stacked-answer">
-                    <span>=</span>
-                    <input
-                        id="typed-answer"
-                        class="typed-answer"
-                        type="text"
-                        inputmode="numeric"
-                        autocomplete="off"
-                        maxlength="3"
-                        placeholder="?"
-                        aria-label="Ketik jawaban"
-                    >
-                </div>
-
-            </div>
-
-            <button
-                id="check-writing"
-                class="check-writing addition"
-                type="button"
-            >
-                Cek Jawaban
-                <span>▶</span>
-            </button>
-
-            <div class="typed-answer-hint">
-                🔢 Hitung satuan dan puluhan, lalu ketik hasilnya
-            </div>
-
-        </div>
-
-    `;
-
-    setupTypedAnswer(answer);
-
-}
-
-function createWordProblemWorksheet(
-    name,
-    number1,
-    number2,
-    answer,
-    itemIcon
-) 
-
-{
-
-    hideNormalAnswerArea();
-
-    questionElement.innerHTML = `
-
-        <div class="word-problem-worksheet">
-
-        <div class="word-problem-story">
-
-    <p>
-    <strong>${name}</strong> memiliki
-    <strong>${number1}</strong> ${itemIcon}.
-    Kemudian <strong>${name}</strong> mendapat
-    <strong>${number2}</strong> ${itemIcon} lagi.
-    Berapa jumlah ${itemIcon} <strong>${name}</strong> sekarang?
-</p>
-
-</div>
-
-            <div class="word-problem-answer">
-
-                <span></span>
-
-                <input
-                    id="typed-answer"
-                    class="typed-answer"
-                    type="text"
-                    inputmode="numeric"
-                    autocomplete="off"
-                    maxlength="3"
-                    placeholder="?"
-                    aria-label="Ketik jawaban"
-                >
-
-            </div>
-
-            <button
-                id="check-writing"
-                class="check-writing addition"
-                type="button"
-            >
-                Cek Jawaban
-                <span>▶</span>
-            </button>
-
-            <div class="typed-answer-hint">
-                🔢 Baca ceritanya, hitung, lalu ketik jawabanmu
-            </div>
-
-        </div>
-
-    `;
-
-    setupTypedAnswer(answer);
-
-}
-
-// ========================================
-// LATIHAN 6
+// LATIHAN 4
 // PENGURANGAN PULUHAN
 // ========================================
 
@@ -2146,8 +1488,6 @@ function generateSubtractionQuestion() {
     );
 
 }
-
-
 
 
 // ========================================
@@ -2515,11 +1855,17 @@ function checkTypedCorrect() {
     if (answering) {
         return;
     }
+
+
     answering = true;
+
+
     score += 10;
+
 
     scoreElement.textContent =
         score;
+
 
     if (menuScoreElement) {
 
@@ -2528,12 +1874,15 @@ function checkTypedCorrect() {
 
     }
 
+
     setMimiMessage(
         "Hebat! Jawabanmu benar! 🎉"
     );
 
-    launchConfetti();
+
     removeWrongMessage();
+
+
     mimiElement.classList.remove(
         "wrong",
         "correct"
@@ -2883,7 +2232,6 @@ function checkTypedCorrect() {
     setMimiMessage(
         "Hebat! Jawabanmu benar! 🎉"
     );
-    launchConfetti();
 
 
     removeWrongMessage();
@@ -3017,13 +2365,6 @@ function checkTypedWrong() {
 // ========================================
 
 function nextQuestion() {
-
-    mimiElement.classList.remove(
-        "correct",
-        "wrong"
-    );
-
-    setMimiMessage("Ayo pilih jawabanmu 🌿");
 
     if (
         questionNumber >=
@@ -3170,7 +2511,6 @@ function checkAnswer(answer) {
             "Hebat! Jawabanmu benar! 🎉"
         );
 
-        launchConfetti();
 
         removeWrongMessage();
 
@@ -3232,93 +2572,7 @@ function checkAnswer(answer) {
     }
 
 }
-// ========================================
-// CONFETTI CELEBRATION
-// ========================================
 
-function launchConfetti() {
-
-    const container =
-        document.createElement("div");
-
-    container.style.position = "fixed";
-    container.style.inset = "0";
-    container.style.pointerEvents = "none";
-    container.style.overflow = "hidden";
-    container.style.zIndex = "99999";
-
-    document.body.appendChild(container);
-
-    const colors = [
-        "#7FAF8B",
-        "#E8B86D",
-        "#D98282",
-        "#8FA8C7",
-        "#C99A6B"
-    ];
-
-    for (let i = 0; i < 80; i++) {
-
-        const piece =
-            document.createElement("div");
-
-        piece.style.position = "absolute";
-        piece.style.width = "10px";
-        piece.style.height = "16px";
-        piece.style.background =
-            colors[
-                Math.floor(
-                    Math.random() * colors.length
-                )
-            ];
-        piece.style.borderRadius = "2px";
-
-        piece.style.left =
-            Math.random() * 100 + "%";
-
-        piece.style.top = "-20px";
-
-        container.appendChild(piece);
-
-        const x =
-            (Math.random() - 0.5) * 500;
-
-        const y =
-            500 + Math.random() * 300;
-
-        const rotation =
-            360 + Math.random() * 720;
-
-        piece.animate(
-            [
-                {
-                    transform:
-                        "translate(0, 0) rotate(0deg)",
-                    opacity: 1
-                },
-                {
-                    transform:
-                        `translate(${x}px, ${y}px) rotate(${rotation}deg)`,
-                    opacity: 0
-                }
-            ],
-            {
-                duration:
-                    1400 + Math.random() * 800,
-                delay:
-                    Math.random() * 150,
-                easing:
-                    "ease-out",
-                fill:
-                    "forwards"
-            }
-        );
-    }
-
-    setTimeout(() => {
-        container.remove();
-    }, 2600);
-}
 
 // ========================================
 // MIMI MESSAGE
@@ -3472,7 +2726,6 @@ backToClassButton.onclick =
 
         // Reset menu latihan
         placeValueMenu.classList.add("hidden");
-        additionMenu.classList.add("hidden");
         exerciseList.classList.remove("hidden");
 
         classMenu.classList.remove("hidden");
@@ -3492,14 +2745,6 @@ backToExerciseButton.onclick =
 
 
         placeValueMenu.classList.add(
-            "hidden"
-        );
-
-        additionMenu.classList.add(
-            "hidden"
-        );
-
-        stackedAdditionMenu.classList.add(
             "hidden"
         );
 

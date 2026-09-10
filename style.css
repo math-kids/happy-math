@@ -2192,3 +2192,172 @@ span:last-child {
         height: 52px;
     }
 }
+
+/* ========================================
+   PENJUMLAHAN BERSUSUN
+   05A — TANPA MENYIMPAN
+   ======================================== */
+
+.stacked-addition-worksheet {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 24px;
+}
+
+.word-problem-worksheet {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 24px;
+}
+
+.word-problem-story {
+    width: min(560px, 90%);
+    font-size: 24px;
+    line-height: 1.6;
+    text-align: center;
+}
+
+.word-problem-story p {
+    margin: 0 0 10px;
+}
+
+.word-problem-story strong {
+    font-weight: 700;
+}
+
+.word-problem-answer {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-size: 36px;
+    font-weight: 700;
+}
+
+.word-problem-answer .typed-answer {
+    width: 120px;
+    height: 58px;
+    font-size: 36px;
+    text-align: center;
+}
+
+.stacked-addition-problem {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    width: 180px;
+    font-size: 42px;
+    line-height: 1.15;
+}
+
+.stacked-number {
+    display: grid;
+    grid-template-columns: 32px 1fr;
+    align-items: center;
+}
+
+.stacked-carry {
+    display: grid;
+    grid-template-columns: 32px 1fr;
+    align-items: center;
+    height: 24px;
+}
+
+.stacked-carry span {
+    text-align: center;
+}
+
+.stacked-carry strong {
+    text-align: right;
+    font-size: 22px;
+    line-height: 1;
+    letter-spacing: 3px;
+    padding-right: 42px;
+}
+
+.stacked-number span {
+    text-align: center;
+    font-weight: 700;
+}
+
+.stacked-number strong {
+    text-align: right;
+    font-weight: 700;
+    letter-spacing: 3px;
+}
+
+.stacked-line {
+    border-bottom: 4px solid currentColor;
+    margin: 8px 0 12px 32px;
+}
+
+.stacked-answer {
+    display: grid;
+    grid-template-columns: 32px 1fr;
+    align-items: center;
+}
+
+.stacked-answer span {
+    text-align: center;
+    font-weight: 700;
+}
+
+.stacked-answer .typed-answer {
+    width: 110px;
+    height: 58px;
+    margin-left: auto;
+    font-size: 36px;
+    text-align: right;
+}
+
+/* ========================================
+   CONFETTI CELEBRATION
+   ======================================== */
+
+.confetti-container {
+    position: fixed;
+    inset: 0;
+    overflow: hidden;
+    pointer-events: none;
+    z-index: 9999;
+}
+
+.confetti-piece {
+    position: absolute;
+    display: block;
+    top: -30px;
+    width: 12px;
+    height: 18px;
+    border-radius: 3px;
+    opacity: 0;
+    animation-name: confetti-fall;
+    animation-timing-function: ease-out;
+    animation-fill-mode: forwards;
+}
+
+@keyframes confetti-fall {
+
+    0% {
+        opacity: 0;
+        transform:
+            translateY(-30px)
+            translateX(0)
+            rotate(0deg)
+            scale(0.5);
+    }
+
+    10% {
+        opacity: 1;
+    }
+
+    100% {
+        opacity: 0;
+        transform:
+            translateY(600px)
+            translateX(var(--drift))
+            rotate(var(--rotation))
+            scale(1);
+    }
+
+}
