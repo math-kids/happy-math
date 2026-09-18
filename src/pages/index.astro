@@ -1,0 +1,134 @@
+---
+import MainLayout from "../layouts/MainLayout.astro";
+import Header from "../components/Header.astro";
+---
+
+<MainLayout title="Mimi Matematika">
+    <Header />
+
+    <main class="home-page">
+        <section class="hero-banner">
+            <img
+                src="/assets/banner.png"
+                alt="Mimi Matematika - Yuk belajar matematika bareng Mimi"
+            />
+
+            <!-- MIMI NGOBROL CTA -->
+            <a href="/ngobrol" class="mimi-chat-home" aria-label="Mimi Ngobrol">
+                <img
+                    src="/assets/peekaboo-mimi.png"
+                    alt="Mimi Ngobrol"
+                    class="chatmimi-home"
+                />
+
+                <span class="mimi-chat-button">
+                    <span>Mimi Ngobrol</span>
+                </span>
+            </a>
+        </section>
+
+        <!-- PILIH KELAS -->
+
+        <section class="class-section">
+            <div class="section-heading">
+                <div>
+                    <h2>Pilih Kelas</h2>
+                    <p>Mulai belajar sesuai usiamu.</p>
+                </div>
+
+                <a href="/belajar" class="see-all">
+                    Lihat semua kelas
+                    <span>→</span>
+                </a>
+            </div>
+
+            <div class="class-grid">
+                <a href="/belajar/tk" class="class-card class-tk">
+                    <div class="class-icon">🦋</div>
+                    <h3>TK</h3>
+                    <p>Bermain sambil mengenal angka</p>
+                    <span class="class-arrow">→</span>
+                </a>
+
+                <a href="/belajar/kelas-1" class="class-card class-1">
+                    <div class="class-icon">🧸</div>
+                    <h3>Kelas 1 SD</h3>
+                    <p>Dasar-dasar matematika</p>
+                    <span class="class-arrow">→</span>
+                </a>
+
+                <a href="/belajar/kelas-2" class="class-card class-2">
+                    <img
+                        src="/assets/peekaboo-mimi.png"
+                        alt="Mimi"
+                        class="mimi-class2"
+                    />
+
+                    <div class="class-icon">⭐</div>
+
+                    <h3>Kelas 2 SD</h3>
+
+                    <p>Latihan makin seru</p>
+
+                    <span class="class-arrow">→</span>
+                </a>
+
+                <a href="/belajar/kelas-3" class="class-card class-3">
+                    <div class="class-icon">🚀</div>
+                    <h3>Kelas 3 SD</h3>
+                    <p>Tantangan lebih banyak</p>
+                    <span class="class-arrow">→</span>
+                </a>
+
+                <a href="/belajar/kelas-4" class="class-card class-4">
+                    <div class="class-icon">💡</div>
+                    <h3>Kelas 4 SD</h3>
+                    <p>Berpikir lebih kritis</p>
+                    <span class="class-arrow">→</span>
+                </a>
+
+                <a href="/belajar/kelas-5" class="class-card class-5">
+                    <div class="class-icon">🏆</div>
+                    <h3>Kelas 5 SD</h3>
+                    <p>Siap untuk soal yang lebih sulit</p>
+                    <span class="class-arrow">→</span>
+                </a>
+
+                <a href="/belajar/kelas-6" class="class-card class-6">
+                    <div class="class-icon">⛰️</div>
+                    <h3>Kelas 6 SD</h3>
+                    <p>Melangkah dengan percaya diri</p>
+                    <span class="class-arrow">→</span>
+                </a>
+            </div>
+        </section>
+
+        <!-- FOOTER -->
+
+        <footer class="site-footer">
+            <div class="footer-inner">
+                <div class="footer-brand">
+                    <img src="/assets/mimi.png" alt="Mimi Matematika" />
+
+                    <div>
+                        <strong>Mimi Matematika</strong>
+
+                        <span>
+                            Langkah kecil hari ini, prestasi besar nanti.
+                        </span>
+                    </div>
+                </div>
+
+                <div class="footer-links">
+                    <a href="/belajar"> Belajar </a>
+
+                    <a href="/ngobrol"> Mimi Ngobrol </a>
+
+                    <a href="/permainan"> Permainan </a>
+                </div>
+            </div>
+
+            <div class="footer-bottom">© 2026 Mimi Matematika</div>
+        </footer>
+    </main>
+</MainLayout>

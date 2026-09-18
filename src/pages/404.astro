@@ -1,0 +1,216 @@
+---
+import MainLayout from "../layouts/MainLayout.astro";
+import Header from "../components/Header.astro";
+---
+
+<MainLayout title="Segera Hadir - Mimi Matematika">
+    <Header />
+
+    <main class="coming-page">
+
+        <section class="coming-card">
+
+            <img
+                src="/assets/mimi.png"
+                alt="Mimi"
+                class="coming-mimi"
+            />
+
+            <span class="coming-badge">
+                🚧 Segera Hadir
+            </span>
+
+            <h1>
+                Halaman ini sedang disiapkan
+            </h1>
+
+            <p>
+                Mimi sedang menyiapkan materi dan permainan
+                baru untukmu. 😊
+            </p>
+
+            <a href="/belajar" class="coming-button">
+                ← Kembali ke Belajar
+            </a>
+
+        </section>
+
+    </main>
+
+    <footer class="site-footer">
+
+        <div class="footer-inner">
+
+            <div class="footer-brand">
+
+                <img
+                    src="/assets/mimi.png"
+                    alt="Mimi Matematika"
+                />
+
+                <div>
+                    <strong>Mimi Matematika</strong>
+
+                    <span>
+                        Langkah kecil hari ini, prestasi besar nanti.
+                    </span>
+                </div>
+
+            </div>
+
+            <div class="footer-links">
+                <a href="/belajar">Belajar</a>
+                <a href="/ngobrol">Mimi Ngobrol</a>
+                <a href="/permainan">Permainan</a>
+            </div>
+
+        </div>
+
+        <div class="footer-bottom">
+            © 2026 Mimi Matematika
+        </div>
+
+    </footer>
+</MainLayout>
+
+
+<style>
+
+.coming-page {
+    width: 100%;
+    max-width: 1180px;
+
+    min-height: 520px;
+
+    margin: 0 auto;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 40px 24px;
+
+    background: #f3faf5;
+}
+
+.coming-card {
+    width: 100%;
+    max-width: 560px;
+
+    padding: 42px 30px;
+
+    text-align: center;
+
+    border-radius: 26px;
+
+    background: #ffffff;
+
+    box-shadow:
+        0 8px 25px rgba(55, 80, 65, 0.08);
+}
+
+.coming-mimi {
+    width: 100px;
+    height: 100px;
+
+    object-fit: contain;
+
+    margin: 0 auto 14px;
+}
+
+.coming-badge {
+    display: inline-flex;
+
+    padding: 7px 13px;
+
+    border-radius: 999px;
+
+    background: #fff5dc;
+
+    color: #8a6b35;
+
+    font-size: 11px;
+    font-weight: 800;
+}
+
+.coming-card h1 {
+    margin: 14px 0 7px;
+
+    color: #173f4b;
+
+    font-size: 25px;
+    line-height: 1.2;
+}
+
+.coming-card p {
+    margin: 0 auto 22px;
+
+    max-width: 420px;
+
+    color: #718078;
+
+    font-size: 13px;
+    line-height: 1.5;
+}
+
+.coming-button {
+    display: inline-flex;
+
+    align-items: center;
+    justify-content: center;
+
+    min-height: 44px;
+
+    padding: 0 20px;
+
+    border-radius: 14px;
+
+    background: #39704b;
+
+    color: #ffffff;
+
+    font-size: 12px;
+    font-weight: 800;
+
+    text-decoration: none;
+}
+
+.coming-button:hover {
+    opacity: 0.9;
+}
+
+
+/* ========================================
+   MOBILE
+======================================== */
+
+@media (max-width: 600px) {
+
+    .coming-page {
+        min-height: 480px;
+
+        padding: 30px 14px;
+    }
+
+    .coming-card {
+        padding: 34px 20px;
+
+        border-radius: 22px;
+    }
+
+    .coming-mimi {
+        width: 82px;
+        height: 82px;
+    }
+
+    .coming-card h1 {
+        font-size: 21px;
+    }
+
+    .coming-card p {
+        font-size: 11px;
+    }
+
+}
+
+</style>

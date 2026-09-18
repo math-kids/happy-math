@@ -1,0 +1,1444 @@
+---
+import MainLayout from "../../layouts/MainLayout.astro";
+import Header from "../../components/Header.astro";
+---
+
+<MainLayout title="Dokter Gigi Mimi — Mimi Matematika">
+    <Header />
+
+    <main class="game-page">
+        <div class="game-body">
+            <div class="game-topbar">
+                <a href="/permainan">← Kembali ke permainan</a>
+                <span>🦷 Game Mimi</span>
+                <span></span>
+            </div>
+
+            <section class="game-content">
+                <!-- INTRO -->
+                <div id="game-intro">
+                    <div class="game-icon">🦷</div>
+
+                    <h1>Dokter Gigi Mimi</h1>
+
+                    <p class="game-intro-text">
+                        Yuk bantu Mimi membersihkan semua kuman di gigi!
+                    </p>
+
+                    <button
+                        id="start-game"
+                        class="start-game-button"
+                        type="button"
+                    >
+                        <span>🪥</span>
+                        <strong>Mulai Game</strong>
+                        <span>▶</span>
+                    </button>
+                </div>
+
+                <!-- GAME -->
+                <div id="dental-game" class="dental-game hidden">
+                    <div class="dental-title-row">
+                        <h1>🦷 Dokter Gigi Mimi</h1>
+
+                        <div class="dental-hud">
+                            <div class="dental-timer">
+                                ⏱️ <strong id="game-timer">00:30</strong>
+                            </div>
+
+                            <div class="dental-progress">
+                                🧼 <strong id="clean-count">0</strong>/<strong
+                                    id="total-count">5</strong
+                                >
+                            </div>
+                        </div>
+                    </div>
+
+                    <p class="game-hint">🪥 Geser sikat gigi ke semua kuman!</p>
+
+                    <div
+                        id="dental-arena"
+                        class="dental-arena"
+                        aria-label="Area membersihkan gigi"
+                    >
+                        <picture class="dental-background-picture">
+                            <img
+                                src="/assets/bg-game-doktergigi.png"
+                                class="dental-background"
+                                alt="Dokter Gigi Mimi"
+                            />
+                        </picture>
+
+                        <!-- Kuman akan ditempatkan oleh JavaScript -->
+                        <div id="germ-layer" class="germ-layer"></div>
+
+                        <!-- Busa mengikuti posisi sikat -->
+                        <img
+                            id="foam"
+                            class="foam hidden"
+                            src="/assets/busa.png"
+                            alt=""
+                            aria-hidden="true"
+                        />
+
+                        <img
+                            id="toothbrush"
+                            class="toothbrush"
+                            src="/assets/sikatgigi.png"
+                            alt="Sikat gigi Mimi"
+                            draggable="false"
+                        />
+                    </div>
+                </div>
+
+                <!-- RESULT -->
+                <div id="game-result" class="game-result hidden"></div>
+            </section>
+        </div>
+
+        <footer class="site-footer">
+            <div class="footer-inner">
+                <div class="footer-brand">
+                    <img src="/assets/mimi.png" alt="Mimi Matematika" />
+
+                    <div>
+                        <strong>Mimi Matematika</strong>
+                        <span>
+                            Langkah kecil hari ini, prestasi besar nanti.
+                        </span>
+                    </div>
+                </div>
+
+                <div class="footer-links">
+                    <a href="/belajar">Belajar</a>
+                    <a href="/ngobrol">Mimi Ngobrol</a>
+                    <a href="/permainan">Permainan</a>
+                </div>
+            </div>
+
+            <div class="footer-bottom">© 2026 Mimi Matematika</div>
+        </footer>
+    </main>
+</MainLayout>
+
+<style>
+    .game-page {
+        width: 100%;
+        max-width: 1180px;
+        min-height: calc(100vh - 80px);
+        margin: 0 auto;
+        padding: 8px 24px 0;
+        background: #f3faf5;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .game-body {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .game-topbar {
+        display: grid;
+        grid-template-columns: 1fr auto 1fr;
+        align-items: center;
+        margin-bottom: 8px;
+        font-size: 12px;
+    }
+
+    .game-topbar a {
+        color: #39704b;
+        text-decoration: none;
+        font-weight: 600;
+    }
+
+    .game-topbar span {
+        color: #718078;
+        font-weight: 600;
+    }
+
+    .game-content {
+        flex: 1;
+        width: 100%;
+        max-width: none;
+        text-align: center;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    #game-intro {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .game-icon {
+        font-size: 52px;
+        line-height: 1;
+        margin: 8px 0;
+    }
+
+    .game-content h1 {
+        margin: 0;
+        color: #173f4b;
+        font-size: 28px;
+        line-height: 1.15;
+    }
+
+    .game-intro-text {
+        margin: 6px 0 16px;
+        color: #718078;
+        font-size: 13px;
+    }
+
+    .start-game-button {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 14px;
+        min-height: 48px;
+        padding: 0 24px;
+        border: none;
+        border-radius: 15px;
+        background: #dcecdf;
+        color: #39704b;
+        font-size: 14px;
+        font-weight: 700;
+        cursor: pointer;
+        transition:
+            transform 0.15s ease,
+            box-shadow 0.15s ease;
+    }
+
+    .start-game-button:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 6px 14px rgba(91, 70, 54, 0.12);
+    }
+
+    .start-game-button:active {
+        transform: translateY(1px);
+    }
+
+    .dental-game {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .dental-title-row {
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 22px;
+        margin: 2px 0 0;
+    }
+
+    .dental-hud {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+    }
+
+    .dental-timer {
+        padding: 7px 12px;
+        border-radius: 14px;
+        background: #fff5df;
+        color: #9a6a25;
+        font-size: 14px;
+        white-space: nowrap;
+        font-variant-numeric: tabular-nums;
+    }
+
+    .dental-timer.warning {
+        background: #ffe7e4;
+        color: #c6534a;
+    }
+
+    .dental-title-row h1 {
+        margin: 0;
+    }
+
+    .dental-progress {
+        padding: 7px 14px;
+        border-radius: 14px;
+        background: #e4f2ea;
+        color: #39704b;
+        font-size: 14px;
+        white-space: nowrap;
+    }
+
+    .game-hint {
+        margin: 5px 0 8px;
+        color: #718078;
+        font-size: 11px;
+        line-height: 1.5;
+    }
+
+    .dental-arena {
+        position: relative;
+        width: 100%;
+        aspect-ratio: 1180 / 720;
+        overflow: hidden;
+        border-radius: 24px;
+        border: 4px solid #a7c5c9;
+        background: #dff4f4;
+        touch-action: none;
+        user-select: none;
+    }
+
+    .dental-background-picture {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        display: block;
+        z-index: 1;
+        pointer-events: none;
+        user-select: none;
+    }
+
+    .dental-background {
+        display: block;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        pointer-events: none;
+        user-select: none;
+    }
+
+    .germ-layer {
+        position: absolute;
+        inset: 0;
+        z-index: 10;
+        pointer-events: none;
+    }
+
+    :global(.germ) {
+        position: absolute !important;
+        width: 110px !important;
+        height: 110px !important;
+        max-width: none !important;
+        max-height: none !important;
+        object-fit: contain;
+        display: block;
+        pointer-events: none;
+        user-select: none;
+        filter: drop-shadow(0 3px 3px rgba(70, 50, 40, 0.12));
+        animation: none;
+    }
+
+    :global(.germ.popping) {
+        animation: germ-pop 1.05s ease-in-out forwards;
+        pointer-events: none;
+    }
+
+    /* =========================================
+       GERM POSITIONS
+       Sama seperti .map-step pada latihan:
+       CSS menentukan posisi setiap objek.
+       ========================================= */
+
+    :global(.germ-1) {
+        left: 42%;
+        top: 43%;
+        transform: translate(-50%, -50%);
+    }
+
+    :global(.germ-2) {
+        left: 58%;
+        top: 43%;
+        transform: translate(-50%, -50%);
+    }
+
+    /* Tiga kuman bawah: diturunkan agar pusat kuman tepat di mahkota gigi bawah. */
+    :global(.germ-3) {
+        left: 38%;
+        top: 81%;
+        transform: translate(-50%, -50%);
+    }
+
+    :global(.germ-4) {
+        left: 50%;
+        top: 84%;
+        transform: translate(-50%, -50%);
+    }
+
+    :global(.germ-5) {
+        left: 62%;
+        top: 81%;
+        transform: translate(-50%, -50%);
+    }
+
+    /* Kilau gigi setelah kuman berhasil dibersihkan. */
+    :global(.tooth-sparkle) {
+        position: absolute;
+        width: 1px;
+        height: 1px;
+        z-index: 35;
+        pointer-events: none;
+        animation: sparkle-life 0.95s ease-out forwards;
+    }
+
+    :global(.tooth-sparkle span) {
+        position: absolute;
+        left: 0;
+        top: 0;
+        display: block;
+        color: #fff7a8;
+        font-size: 24px;
+        line-height: 1;
+        font-weight: 900;
+        text-shadow:
+            0 0 5px rgba(255, 255, 255, 0.95),
+            0 0 10px rgba(255, 221, 90, 0.85);
+        transform: translate(-50%, -50%) scale(0);
+        animation: sparkle-star 0.7s ease-out forwards;
+    }
+
+    :global(.tooth-sparkle span:nth-child(1)) {
+        --sx: -42px;
+        --sy: -30px;
+        animation-delay: 0ms;
+    }
+    :global(.tooth-sparkle span:nth-child(2)) {
+        --sx: 38px;
+        --sy: -34px;
+        animation-delay: 70ms;
+        font-size: 18px;
+    }
+    :global(.tooth-sparkle span:nth-child(3)) {
+        --sx: 48px;
+        --sy: 10px;
+        animation-delay: 120ms;
+    }
+    :global(.tooth-sparkle span:nth-child(4)) {
+        --sx: -46px;
+        --sy: 18px;
+        animation-delay: 160ms;
+        font-size: 19px;
+    }
+    :global(.tooth-sparkle span:nth-child(5)) {
+        --sx: -10px;
+        --sy: -48px;
+        animation-delay: 210ms;
+        font-size: 17px;
+    }
+    :global(.tooth-sparkle span:nth-child(6)) {
+        --sx: 10px;
+        --sy: 42px;
+        animation-delay: 250ms;
+        font-size: 16px;
+    }
+
+    @keyframes sparkle-star {
+        0% {
+            transform: translate(-50%, -50%) scale(0) rotate(-20deg);
+            opacity: 0;
+        }
+        35% {
+            transform: translate(calc(-50% + var(--sx)), calc(-50% + var(--sy)))
+                scale(1.15) rotate(0deg);
+            opacity: 1;
+        }
+        70% {
+            transform: translate(calc(-50% + var(--sx)), calc(-50% + var(--sy)))
+                scale(0.85) rotate(8deg);
+            opacity: 1;
+        }
+        100% {
+            transform: translate(calc(-50% + var(--sx)), calc(-50% + var(--sy)))
+                scale(0.25) rotate(18deg);
+            opacity: 0;
+        }
+    }
+
+    @keyframes sparkle-life {
+        0%,
+        75% {
+            opacity: 1;
+        }
+        100% {
+            opacity: 0;
+        }
+    }
+
+    .toothbrush {
+        position: absolute;
+        width: 16%;
+        max-width: 175px;
+        height: auto;
+        aspect-ratio: 1;
+        object-fit: contain;
+        left: 82%;
+        top: 78%;
+        transform: translate(-50%, -50%) rotate(-28deg);
+        z-index: 30;
+        cursor: grab;
+        touch-action: none;
+        user-select: none;
+        -webkit-user-drag: none;
+        filter: drop-shadow(0 5px 4px rgba(60, 70, 70, 0.18));
+    }
+
+    .toothbrush.dragging {
+        cursor: grabbing;
+    }
+
+    .foam {
+        position: absolute;
+        width: 30%;
+        min-width: 150px;
+        max-width: 250px;
+        height: auto;
+        object-fit: contain;
+        transform: translate(-50%, -50%) scale(0.72);
+        margin-left: 0;
+        margin-top: 0;
+        z-index: 40;
+        pointer-events: none;
+        opacity: 0.94;
+        filter: drop-shadow(0 2px 2px rgba(70, 150, 180, 0.12));
+    }
+
+    .game-result {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding-top: 45px;
+    }
+
+    .game-result-icon {
+        font-size: 64px;
+        line-height: 1;
+        margin-bottom: 10px;
+    }
+
+    .game-result h1 {
+        margin: 0 0 8px;
+        color: #173f4b;
+    }
+
+    .game-result p {
+        margin: 5px 0;
+        color: #718078;
+        font-size: 16px;
+    }
+
+    .game-result-score {
+        margin: 10px 0 20px;
+        color: #39704b;
+        font-size: 26px;
+        font-weight: 700;
+    }
+
+    .back-to-games {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        min-height: 46px;
+        padding: 0 22px;
+        border-radius: 15px;
+        background: #dcecdf;
+        color: #39704b;
+        font-size: 13px;
+        font-weight: 700;
+        text-decoration: none;
+    }
+
+    .site-footer {
+        width: 100%;
+        margin-top: auto;
+        background: #e8f6ec;
+    }
+
+    .site-footer .footer-inner {
+        width: 100%;
+        min-height: 64px;
+        padding: 12px 24px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+
+    .site-footer .footer-brand {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+    }
+
+    .site-footer .footer-brand img {
+        width: 32px;
+        height: 32px;
+        object-fit: contain;
+    }
+
+    .site-footer .footer-brand > div {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 2px;
+    }
+
+    .site-footer .footer-brand strong {
+        font-size: 13px;
+        line-height: 1.1;
+    }
+
+    .site-footer .footer-brand span {
+        font-size: 10px;
+        line-height: 1.2;
+    }
+
+    .site-footer .footer-links {
+        display: flex;
+        align-items: center;
+        gap: 18px;
+    }
+
+    .site-footer .footer-links a {
+        color: #39704b;
+        font-size: 11px;
+        text-decoration: none;
+    }
+
+    .site-footer .footer-bottom {
+        padding: 7px 24px 9px;
+        color: #718078;
+        font-size: 9px;
+    }
+
+    .hidden {
+        display: none !important;
+    }
+
+    /* Setiap sapuan: kuman bergoyang + zoom in/out, tetapi tetap ada. */
+    @keyframes germ-brush-hit {
+        0% {
+            transform: translate(-50%, -50%) scale(1) rotate(0deg);
+        }
+        18% {
+            transform: translate(calc(-50% - 5px), -50%) scale(1.1)
+                rotate(-5deg);
+        }
+        36% {
+            transform: translate(calc(-50% + 5px), -50%) scale(1.18)
+                rotate(5deg);
+        }
+        54% {
+            transform: translate(calc(-50% - 4px), -50%) scale(1.08)
+                rotate(-4deg);
+        }
+        72% {
+            transform: translate(calc(-50% + 3px), -50%) scale(1.12)
+                rotate(3deg);
+        }
+        100% {
+            transform: translate(-50%, -50%) scale(1) rotate(0deg);
+        }
+    }
+
+    /* Sapuan ke-9: zoom in -> zoom out -> mengecil -> hilang. */
+    @keyframes germ-pop {
+        0% {
+            transform: translate(-50%, -50%) scale(1) rotate(0deg);
+            opacity: 1;
+        }
+        20% {
+            transform: translate(-50%, -50%) scale(1.2) rotate(-4deg);
+            opacity: 1;
+        }
+        45% {
+            transform: translate(-50%, -50%) scale(1.32) rotate(4deg);
+            opacity: 1;
+        }
+        65% {
+            transform: translate(-50%, -50%) scale(0.94) rotate(-2deg);
+            opacity: 1;
+        }
+        78% {
+            transform: translate(-50%, -50%) scale(1.06) rotate(0deg);
+            opacity: 1;
+        }
+        100% {
+            transform: translate(-50%, -50%) scale(0);
+            opacity: 0;
+        }
+    }
+
+    :global(.germ.brush-hit) {
+        animation: germ-brush-hit 0.65s ease-in-out;
+    }
+
+    @media (max-width: 768px) {
+        .game-page {
+            width: 100%;
+            max-width: none;
+            min-height: 100svh;
+            padding: 0;
+            background: #f3faf5;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .game-body {
+            flex: 0 0 auto;
+            display: flex;
+            flex-direction: column;
+            width: 100%;
+        }
+
+        .game-topbar {
+            width: 100%;
+            padding: 6px 0 4px;
+            margin-bottom: 0;
+            margin-left: 0;
+            margin-right: 0;
+            font-size: 10px;
+            background: #f3faf5;
+            flex-shrink: 0;
+            display: grid;
+            grid-template-columns: 1fr auto 1fr;
+            padding-left: 10px;
+            padding-right: 10px;
+        }
+
+        .game-content {
+            width: 100%;
+            max-width: none;
+            flex: 0 0 auto;
+            display: flex;
+            flex-direction: column;
+            padding: 0;
+            margin: 0;
+            align-items: stretch;
+            text-align: center;
+        }
+
+        #game-intro {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px 16px;
+        }
+
+        .game-icon {
+            font-size: 40px;
+            margin: 8px 0 4px;
+        }
+
+        .game-content h1 {
+            font-size: 22px;
+            margin: 4px 0;
+        }
+
+        .game-intro-text {
+            margin: 3px 0 12px;
+            font-size: 12px;
+        }
+
+        .start-game-button {
+            min-height: 44px;
+            padding: 0 18px;
+            font-size: 13px;
+            margin-bottom: 12px;
+        }
+
+        .dental-game {
+            width: 100%;
+            flex: 1 1 auto;
+            display: flex;
+            flex-direction: column;
+            padding: 0;
+            margin: 0;
+            min-width: 0;
+        }
+
+        .dental-title-row {
+            width: 100%;
+            padding: 6px 0;
+            margin: 0;
+            gap: 6px;
+            background: #f3faf5;
+            flex-shrink: 0;
+            border-bottom: 2px solid #e0eee5;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .dental-title-row h1 {
+            font-size: 25px;
+            margin: 0;
+            white-space: normal;
+            text-align: center;
+            flex: 0 1 auto;
+        }
+
+        .dental-hud {
+            gap: 4px;
+            margin-left: auto;
+            margin-right: auto;
+            display: flex;
+            flex-shrink: 1;
+            min-width: auto;
+        }
+
+        .dental-timer {
+            padding: 3px 6px;
+            font-size: 9px;
+            border-radius: 6px;
+            white-space: nowrap;
+        }
+
+        .dental-progress {
+            padding: 3px 6px;
+            font-size: 9px;
+            border-radius: 6px;
+            white-space: nowrap;
+        }
+
+        .game-hint {
+            margin: 0;
+            padding: 3px 0;
+            font-size: 9px;
+            background: #f3faf5;
+            border-bottom: 1px solid #e0eee5;
+            flex-shrink: 0;
+            width: 100%;
+        }
+
+        /*
+         * Full-width mobile game board.
+         * Arena mengisi sisa screen setelah header, title, dan hint.
+         */
+        /*
+         * MOBILE GAME BOARD
+         * Full width + full available height.
+         * Tidak memakai padding kiri/kanan dan tidak membuat ruang biru.
+         */
+        .dental-arena {
+            width: 100%;
+            flex: 0 0 auto;
+            min-height: 0;
+            height: auto;
+            aspect-ratio: 1180 / 720;
+            border-radius: 0;
+            border: none;
+            background: #dff4f4;
+            position: relative;
+            overflow: hidden;
+        }
+
+        /*
+         * Background mobile memakai gambar portrait sebagai satu frame penuh.
+         * object-fit: cover menghilangkan blank space akibat object-fit: contain.
+         */
+        .dental-background-picture {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+            display: block;
+        }
+
+        .dental-background {
+            display: block;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center center;
+            background: transparent;
+        }
+
+        :global(.germ) {
+            width: 48px !important;
+            height: 48px !important;
+        }
+
+        /*
+         * MOBILE — posisi kuman disesuaikan dengan background mobile.
+         * Semua kuman ditempatkan di area mulut hippo.
+         */
+        /* MOBILE — kuman atas menempel ke gigi atas,
+           tiga kuman bawah menempel ke gigi bawah. */
+        :global(.germ-1) {
+            left: 38%;
+            top: 42%;
+            transform: translate(-50%, -50%);
+        }
+
+        :global(.germ-2) {
+            left: 62%;
+            top: 42%;
+            transform: translate(-50%, -50%);
+        }
+
+        :global(.germ-3) {
+            left: 32%;
+            top: 82%;
+            transform: translate(-50%, -50%);
+        }
+
+        :global(.germ-4) {
+            left: 50%;
+            top: 84%;
+            transform: translate(-50%, -50%);
+        }
+
+        :global(.germ-5) {
+            left: 68%;
+            top: 82%;
+            transform: translate(-50%, -50%);
+        }
+
+        .toothbrush {
+            width: 16%;
+            max-width: 120px;
+            left: 78%;
+            top: 78%;
+        }
+
+        .foam {
+            width: 34%;
+            min-width: 105px;
+            max-width: 160px;
+        }
+
+        .game-result {
+            padding: 30px 20px 20px;
+        }
+
+        .game-result-icon {
+            font-size: 52px;
+        }
+
+        .game-result h1 {
+            font-size: 20px;
+        }
+
+        .game-result-score {
+            font-size: 22px;
+        }
+
+        .site-footer {
+            flex-shrink: 0;
+            width: 100%;
+            margin-top: 0;
+            background: #e8f6ec;
+        }
+
+        .site-footer .footer-inner {
+            padding: 8px 12px;
+            flex-direction: column;
+            gap: 8px;
+            align-items: center;
+            text-align: center;
+        }
+
+        .site-footer .footer-links {
+            gap: 12px;
+        }
+
+        .site-footer .footer-brand strong {
+            font-size: 11px;
+        }
+
+        .site-footer .footer-brand span {
+            font-size: 9px;
+        }
+
+        .site-footer .footer-links a {
+            font-size: 10px;
+        }
+
+        .site-footer .footer-bottom {
+            padding: 6px 12px 8px;
+            font-size: 8px;
+        }
+
+        .game-result {
+            padding: 35px 16px 0;
+        }
+
+        .game-result-icon {
+            font-size: 52px;
+        }
+
+        .game-result p {
+            font-size: 14px;
+        }
+
+        .game-result-score {
+            font-size: 23px;
+        }
+
+        .site-footer .footer-inner {
+            min-height: auto;
+            padding: 10px 12px;
+            flex-direction: row;
+            align-items: center;
+            justify-content: space-between;
+            gap: 8px;
+        }
+
+        .site-footer .footer-brand {
+            gap: 5px;
+        }
+
+        .site-footer .footer-brand img {
+            width: 28px;
+            height: 28px;
+        }
+
+        .site-footer .footer-brand > div {
+            gap: 1px;
+        }
+
+        .site-footer .footer-brand strong {
+            font-size: 11px;
+        }
+
+        .site-footer .footer-brand span {
+            font-size: 8px;
+        }
+
+        .site-footer .footer-links {
+            gap: 10px;
+        }
+
+        .site-footer .footer-links a {
+            font-size: 9px;
+        }
+
+        .site-footer .footer-bottom {
+            padding: 6px 12px 8px;
+            font-size: 8px;
+        }
+    }
+</style>
+
+<script>
+    const intro = document.getElementById("game-intro") as HTMLDivElement;
+    const startButton = document.getElementById(
+        "start-game",
+    ) as HTMLButtonElement;
+    const dentalGame = document.getElementById("dental-game") as HTMLDivElement;
+    const resultScreen = document.getElementById(
+        "game-result",
+    ) as HTMLDivElement;
+    const arena = document.getElementById("dental-arena") as HTMLDivElement;
+    const germLayer = document.getElementById("germ-layer") as HTMLDivElement;
+    const toothbrush = document.getElementById(
+        "toothbrush",
+    ) as HTMLImageElement;
+    const foam = document.getElementById("foam") as HTMLImageElement;
+    const cleanCountElement = document.getElementById(
+        "clean-count",
+    ) as HTMLElement;
+    const totalCountElement = document.getElementById(
+        "total-count",
+    ) as HTMLElement;
+
+    const germAssets = [
+        "/assets/kuman1.png",
+        "/assets/kuman2.png",
+        "/assets/kuman3.png",
+        "/assets/kuman4.png",
+    ];
+
+    /*
+     * 5 target kuman:
+     * 2 pada gigi atas + 3 pada gigi bawah.
+     *
+     * Posisi ditentukan CSS .germ-1 s/d .germ-5,
+     * sama seperti positioning .map-step pada latihan.
+     */
+    /*
+     * Posisi target di dalam arena (persen dari ukuran arena).
+     * 2 kuman di gigi atas, 3 kuman di gigi bawah.
+     */
+    const germPositions = [
+        { x: 39, y: 43 }, // gigi atas kiri
+        { x: 61, y: 43 }, // gigi atas kanan
+        { x: 38, y: 79 }, // gigi bawah kiri
+        { x: 50, y: 82 }, // gigi bawah tengah
+        { x: 62, y: 79 }, // gigi bawah kanan
+    ];
+
+    const totalGerms = germPositions.length;
+
+    const GAME_DURATION = 30;
+
+    let cleaned = 0;
+    let gameRunning = false;
+    let dragging = false;
+    let pointerId: number | null = null;
+    let brushX = 82;
+    let brushY = 78;
+    let timeLeft = GAME_DURATION;
+    let timerInterval: number | null = null;
+
+    totalCountElement.textContent = String(totalGerms);
+
+    startButton.addEventListener("click", startDentalGame);
+
+    function startDentalGame() {
+        intro.classList.add("hidden");
+        resultScreen.classList.add("hidden");
+        dentalGame.classList.remove("hidden");
+
+        cleaned = 0;
+        gameRunning = true;
+        cleanCountElement.textContent = "0";
+
+        germLayer.innerHTML = "";
+        createGerms();
+        resetBrush();
+        startTimer();
+
+        requestAnimationFrame(() => {
+            requestAnimationFrame(checkGermCollisions);
+        });
+    }
+
+    function startTimer() {
+        stopTimer();
+
+        timeLeft = GAME_DURATION;
+        updateTimer();
+
+        timerInterval = window.setInterval(() => {
+            if (!gameRunning) return;
+
+            timeLeft--;
+            updateTimer();
+
+            if (timeLeft <= 0) {
+                endDentalGame(false);
+            }
+        }, 1000);
+    }
+
+    function stopTimer() {
+        if (timerInterval !== null) {
+            window.clearInterval(timerInterval);
+            timerInterval = null;
+        }
+    }
+
+    function updateTimer() {
+        const timer = document.getElementById(
+            "game-timer",
+        ) as HTMLElement | null;
+        if (!timer) return;
+
+        const safeTime = Math.max(0, timeLeft);
+        const minutes = Math.floor(safeTime / 60);
+        const seconds = safeTime % 60;
+
+        timer.textContent = `${String(minutes).padStart(2, "0")}:${String(seconds).padStart(2, "0")}`;
+
+        const timerBox = timer.parentElement;
+        if (timerBox) {
+            timerBox.classList.toggle("warning", safeTime <= 10);
+        }
+    }
+
+    function createGerms() {
+        germPositions.forEach((position, index) => {
+            const germ = document.createElement("img");
+
+            germ.className = `germ germ-${index + 1}`;
+            germ.src = germAssets[index % germAssets.length];
+            germ.alt = "";
+            germ.dataset.germ = "true";
+            germ.dataset.index = String(index);
+            germ.dataset.strokes = "0";
+            germ.dataset.touching = "false";
+
+            /* Position is controlled by global CSS .germ-1 ... .germ-5,
+               following the same pattern as .map-step-N in the reference. */
+            // Posisi dan ukuran dikontrol CSS .germ-1 s/d .germ-5.
+            // Jangan set left/top/transform dari JS agar konsisten seperti map-step.
+
+            germLayer.appendChild(germ);
+        });
+    }
+
+    function resetBrush() {
+        brushX = 82;
+        brushY = 78;
+        setBrushPosition(brushX, brushY);
+        foam.classList.add("hidden");
+        toothbrush.classList.remove("dragging");
+    }
+
+    function setBrushPosition(percentX: number, percentY: number) {
+        brushX = Math.max(4, Math.min(96, percentX));
+        brushY = Math.max(4, Math.min(96, percentY));
+
+        toothbrush.style.left = `${brushX}%`;
+        toothbrush.style.top = `${brushY}%`;
+
+        foam.style.left = `${Math.max(4, brushX - 6)}%`;
+        foam.style.top = `${Math.max(4, brushY - 3)}%`;
+    }
+
+    function pointerToArenaPercent(event: PointerEvent) {
+        const rect = arena.getBoundingClientRect();
+
+        return {
+            x: ((event.clientX - rect.left) / rect.width) * 100,
+            y: ((event.clientY - rect.top) / rect.height) * 100,
+        };
+    }
+
+    toothbrush.addEventListener("pointerdown", (event) => {
+        if (!gameRunning) return;
+
+        event.preventDefault();
+        dragging = true;
+        pointerId = event.pointerId;
+
+        toothbrush.setPointerCapture(event.pointerId);
+        toothbrush.classList.add("dragging");
+        foam.classList.remove("hidden");
+
+        const point = pointerToArenaPercent(event);
+        setBrushPosition(point.x, point.y);
+        checkGermCollisions();
+    });
+
+    toothbrush.addEventListener("pointermove", (event) => {
+        if (!gameRunning || !dragging || event.pointerId !== pointerId) return;
+
+        event.preventDefault();
+
+        const point = pointerToArenaPercent(event);
+        setBrushPosition(point.x, point.y);
+        foam.classList.remove("hidden");
+
+        checkGermCollisions();
+    });
+
+    function stopDragging(event?: PointerEvent) {
+        if (!dragging) return;
+        if (event && pointerId !== null && event.pointerId !== pointerId)
+            return;
+
+        dragging = false;
+        pointerId = null;
+        toothbrush.classList.remove("dragging");
+        foam.classList.add("hidden");
+    }
+
+    toothbrush.addEventListener("pointerup", stopDragging);
+    toothbrush.addEventListener("pointercancel", stopDragging);
+    toothbrush.addEventListener("lostpointercapture", () => stopDragging());
+
+    function isColliding(first: HTMLElement, second: HTMLElement) {
+        const a = first.getBoundingClientRect();
+        const b = second.getBoundingClientRect();
+
+        /*
+         * Collision dibuat forgiving:
+         * area efektif sikat diperbesar sedikit agar anak
+         * tidak perlu mengenai kuman dengan sangat presisi.
+         */
+        const brushPadding = a.width * 0.22;
+        const germPadding = b.width * 0.16;
+
+        const aLeft = a.left + brushPadding;
+        const aRight = a.right - brushPadding;
+        const aTop = a.top + brushPadding;
+        const aBottom = a.bottom - brushPadding;
+
+        const bLeft = b.left + germPadding;
+        const bRight = b.right - germPadding;
+        const bTop = b.top + germPadding;
+        const bBottom = b.bottom - germPadding;
+
+        return !(
+            aRight < bLeft ||
+            aLeft > bRight ||
+            aBottom < bTop ||
+            aTop > bBottom
+        );
+    }
+
+    function isGermHitByBrushHead(germ: HTMLElement) {
+        const brush = toothbrush.getBoundingClientRect();
+        const target = germ.getBoundingClientRect();
+
+        // Kepala sikat berada di sisi kiri-atas dari gambar sikat.
+        // Gunakan titik tersebut sebagai pusat hitbox kepala sikat.
+        const headX = brush.left + brush.width * 0.23;
+        const headY = brush.top + brush.height * 0.25;
+
+        const germX = target.left + target.width / 2;
+        const germY = target.top + target.height / 2;
+
+        const dx = germX - headX;
+        const dy = germY - headY;
+        const distance = Math.sqrt(dx * dx + dy * dy);
+
+        // Hitbox cukup besar untuk anak, tetapi tetap khusus kepala sikat.
+        const headRadius = Math.max(brush.width, brush.height) * 0.2;
+
+        return distance <= headRadius;
+    }
+
+    function checkGermCollisions() {
+        if (!gameRunning || !dragging) return;
+
+        const germs = Array.from(
+            germLayer.querySelectorAll(".germ"),
+        ) as HTMLImageElement[];
+
+        germs.forEach((germ) => {
+            if (germ.classList.contains("popping")) return;
+
+            // Hanya kontak dengan kepala/bulu sikat yang dihitung sebagai sapuan.
+            const colliding = isColliding(toothbrush, germ);
+            const headHit = colliding && isGermHitByBrushHead(germ);
+            const touching = germ.dataset.touching === "true";
+
+            if (headHit && !touching) {
+                germ.dataset.touching = "true";
+
+                const strokes = Number(germ.dataset.strokes || "0") + 1;
+                germ.dataset.strokes = String(strokes);
+
+                if (strokes < 9) {
+                    // Sapuan 1-8: kuman bereaksi dengan goyang + zoom in/out,
+                    // tetapi tidak hilang.
+                    animateGermStroke(germ);
+                } else {
+                    // Sapuan ke-9: jalankan animasi final
+                    // zoom in -> zoom out -> mengecil -> hilang.
+                    cleanGerm(germ);
+                }
+            } else if (!headHit) {
+                // Keluar dari kuman = siap menghitung sapuan berikutnya.
+                germ.dataset.touching = "false";
+            }
+        });
+    }
+
+    function animateGermStroke(germ: HTMLImageElement) {
+        germ.classList.remove("brush-hit");
+        // Force reflow so every new entry/re-entry plays the animation again.
+        void germ.offsetWidth;
+        germ.classList.add("brush-hit");
+
+        window.setTimeout(() => {
+            germ.classList.remove("brush-hit");
+        }, 680);
+    }
+
+    function showToothSparkle(centerX: number, centerY: number) {
+        const sparkle = document.createElement("div");
+        sparkle.className = "tooth-sparkle";
+        sparkle.style.left = `${centerX}px`;
+        sparkle.style.top = `${centerY}px`;
+
+        // Enam kilau kecil menyebar dari posisi gigi yang baru dibersihkan.
+        sparkle.innerHTML = `
+            <span>✦</span>
+            <span>✧</span>
+            <span>✦</span>
+            <span>✧</span>
+            <span>✦</span>
+            <span>✧</span>
+        `;
+
+        arena.appendChild(sparkle);
+
+        window.setTimeout(() => {
+            sparkle.remove();
+        }, 1200);
+    }
+
+    function cleanGerm(germ: HTMLImageElement) {
+        germ.classList.add("popping");
+        cleaned++;
+
+        cleanCountElement.textContent = String(cleaned);
+
+        // Simpan posisi SEBELUM kuman di-remove. Setelah remove(),
+        // getBoundingClientRect() tidak lagi bisa dipakai untuk posisi kilau.
+        const germRect = germ.getBoundingClientRect();
+        const arenaRect = arena.getBoundingClientRect();
+        const sparkleX = germRect.left - arenaRect.left + germRect.width / 2;
+        const sparkleY = germRect.top - arenaRect.top + germRect.height / 2;
+
+        // Tunggu animasi final selesai: zoom in -> zoom out -> mengecil -> hilang.
+        window.setTimeout(() => {
+            germ.remove();
+
+            // Baru setelah kuman benar-benar hilang, enam kilau muncul dari gigi.
+            showToothSparkle(sparkleX, sparkleY);
+
+            if (cleaned >= totalGerms) {
+                endDentalGame(true);
+            }
+        }, 1080);
+    }
+
+    function endDentalGame(success: boolean) {
+        if (!gameRunning) return;
+
+        gameRunning = false;
+        stopTimer();
+        dragging = false;
+        pointerId = null;
+
+        toothbrush.classList.remove("dragging");
+        foam.classList.add("hidden");
+
+        resultScreen.innerHTML = success
+            ? `
+        <div class="game-result-icon">🦷✨</div>
+
+        <h1>Gigi Bersih!</h1>
+
+        <p>
+            Hebat! Semua kuman sudah dibersihkan.
+        </p>
+
+        <div class="game-result-score">
+            🌟 Mimi bangga padamu!
+        </div>
+
+        <a href="/belajar/kelas-2" id="dental-finish-home">
+            ← Kembali ke Latihan
+        </a>
+    `
+            : `
+                <div class="game-result-icon">⏰🦷</div>
+
+                <h1>Waktu Habis!</h1>
+
+             
+
+                <div class="game-result-score">
+                    🧼 Berhasil membersihkan ${cleaned}/5 kuman
+                </div>
+
+               
+            `;
+
+        dentalGame.classList.add("hidden");
+        resultScreen.classList.remove("hidden");
+    }
+</script>

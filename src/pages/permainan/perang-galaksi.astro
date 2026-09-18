@@ -1,0 +1,1158 @@
+---
+import MainLayout from "../../layouts/MainLayout.astro";
+import Header from "../../components/Header.astro";
+---
+
+<MainLayout title="Perang Galaksi — Mimi Matematika">
+    <Header />
+
+    <main class="game-page">
+        <div class="game-body">
+            <div class="game-topbar">
+                <a href="/belajar/kelas-2"> ← Kembali ke latihan </a>
+
+                <span>🎁 Game Hadiah</span>
+
+                <span></span>
+            </div>
+
+            <section class="game-content">
+                <!-- INTRO -->
+
+                <div id="game-intro">
+                    <div class="game-icon">🚀</div>
+
+                    <h1>Perang Galaksi</h1>
+
+                    <p class="game-intro-text">
+                        Hindari komet dan kumpulkan Gem!
+                    </p>
+
+                    <button
+                        id="start-game"
+                        class="start-game-button"
+                        type="button"
+                    >
+                        <span>🚀</span>
+                        <strong>Mulai Game</strong>
+                        <span>▶</span>
+                    </button>
+                </div>
+
+                <!-- GAME -->
+
+                <div id="galaxy-game" class="galaxy-game hidden">
+                    <h1>🚀 Perang Galaksi</h1>
+
+                    <div class="galaxy-status">
+                        <div>
+                            ❤️
+                            <strong id="galaxy-lives">3</strong>
+                        </div>
+
+                        <div>
+                            💎
+                            <strong id="galaxy-gems">0</strong>
+                        </div>
+
+                        <div>
+                            ⏱️
+                            <strong id="galaxy-time">30</strong>
+                        </div>
+                    </div>
+
+                    <div id="galaxy-arena" class="galaxy-arena">
+                        <img
+                            id="galaxy-player"
+                            class="galaxy-player"
+                            src="/assets/pesawat.png"
+                            alt="Pesawat Mimi"
+                        />
+                    </div>
+
+                    <div class="galaxy-controls">
+                        <button
+                            id="galaxy-left"
+                            type="button"
+                            aria-label="Gerak kiri"
+                        >
+                            ◀️
+                        </button>
+
+                        <button
+                            id="galaxy-right"
+                            type="button"
+                            aria-label="Gerak kanan"
+                        >
+                            ▶️
+                        </button>
+                    </div>
+
+                    <p class="game-hint">
+                        💎 Tangkap Gem!
+                        <br />
+                        ☄️ Hindari Komet!
+                    </p>
+                </div>
+
+                <!-- RESULT -->
+
+                <div id="game-result" class="game-result hidden"></div>
+            </section>
+        </div>
+
+        <!-- FOOTER -->
+
+        <footer class="site-footer">
+            <div class="footer-inner">
+                <div class="footer-brand">
+                    <img src="/assets/mimi.png" alt="Mimi Matematika" />
+
+                    <div>
+                        <strong>Mimi Matematika</strong>
+
+                        <span>
+                            Langkah kecil hari ini, prestasi besar nanti.
+                        </span>
+                    </div>
+                </div>
+
+                <div class="footer-links">
+                    <a href="/belajar">Belajar</a>
+                    <a href="/ngobrol">Mimi Ngobrol</a>
+                    <a href="/permainan">Permainan</a>
+                </div>
+            </div>
+
+            <div class="footer-bottom">© 2026 Mimi Matematika</div>
+        </footer>
+    </main>
+</MainLayout>
+
+<style>
+    .game-page {
+        width: 100%;
+        max-width: 1180px;
+        min-height: calc(100vh - 80px);
+
+        margin: 0 auto;
+        padding: 8px 24px 0;
+
+        background: #f3faf5;
+
+        display: flex;
+        flex-direction: column;
+    }
+
+    .game-body {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .game-topbar {
+        display: grid;
+        grid-template-columns: 1fr auto 1fr;
+        align-items: center;
+
+        margin-bottom: 8px;
+
+        font-size: 12px;
+    }
+
+    .game-topbar a {
+        color: #39704b;
+        text-decoration: none;
+        font-weight: 600;
+    }
+
+    .game-topbar span {
+        color: #718078;
+        font-weight: 600;
+    }
+
+    .game-content {
+        flex: 1;
+
+        width: 100%;
+        max-width: none;
+
+        text-align: center;
+
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    /* ========================================
+   INTRO
+======================================== */
+
+    #game-intro {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .game-icon {
+        font-size: 52px;
+        line-height: 1;
+        margin: 8px 0;
+    }
+
+    .game-content h1 {
+        margin: 0;
+
+        color: #173f4b;
+
+        font-size: 28px;
+        line-height: 1.15;
+    }
+
+    .game-intro-text {
+        margin: 6px 0 16px;
+
+        color: #718078;
+        font-size: 13px;
+    }
+
+    .start-game-button {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+
+        gap: 14px;
+
+        min-height: 48px;
+        padding: 0 24px;
+
+        border: none;
+        border-radius: 15px;
+
+        background: #dcecdf;
+        color: #39704b;
+
+        font-size: 14px;
+        font-weight: 700;
+
+        cursor: pointer;
+
+        transition:
+            transform 0.15s ease,
+            box-shadow 0.15s ease;
+    }
+
+    .start-game-button:hover {
+        transform: translateY(-2px);
+
+        box-shadow: 0 6px 14px rgba(91, 70, 54, 0.12);
+    }
+
+    .start-game-button:active {
+        transform: translateY(1px);
+    }
+
+    /* ========================================
+   GALAXY GAME
+======================================== */
+
+    .galaxy-game {
+        width: 100%;
+
+        flex: 1;
+
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .galaxy-game h1 {
+        margin: 2px 0 8px;
+    }
+
+    /* STATUS */
+
+    .galaxy-status {
+        display: flex;
+        justify-content: center;
+        gap: 40px;
+
+        margin: 4px 0 10px;
+
+        color: #526258;
+        font-size: 17px;
+    }
+
+    .galaxy-status strong {
+        margin-left: 4px;
+        color: #39704b;
+    }
+
+    /* ARENA */
+
+  .galaxy-arena {
+    position: relative;
+
+    width: 100%;
+
+    flex: 1;
+    min-height: 400px;
+
+    margin: 4px 0 8px;
+
+    overflow: hidden;
+
+    border-radius: 24px;
+    border: 4px solid #9bb7c7;
+
+    background-image: url("/assets/galaksi.png");
+}
+
+    /* STARS BACKGROUND */
+
+    .galaxy-arena::before {
+        content: "";
+
+        position: absolute;
+        inset: 0;
+
+        background-image:
+            radial-gradient(
+                circle,
+                rgba(255, 255, 255, 0.9) 1px,
+                transparent 1px
+            ),
+            radial-gradient(
+                circle,
+                rgba(255, 255, 255, 0.7) 1px,
+                transparent 1px
+            );
+
+        background-size:
+            90px 90px,
+            150px 150px;
+
+        background-position:
+            20px 30px,
+            60px 80px;
+
+        opacity: 0.45;
+
+        pointer-events: none;
+    }
+
+    /* PLAYER */
+
+    .galaxy-player {
+        position: absolute;
+
+        width: 125px;
+        height: 125px;
+
+        object-fit: contain;
+
+        bottom: 12px;
+        left: 50%;
+
+        transform: translateX(-50%);
+
+        z-index: 20;
+
+        user-select: none;
+        pointer-events: none;
+    }
+
+    /* CONTROLS */
+
+    .galaxy-controls {
+        display: flex;
+        justify-content: center;
+        gap: 18px;
+
+        margin: 5px 0 2px;
+    }
+
+    .galaxy-controls button {
+        width: 54px;
+        height: 46px;
+
+        border: none;
+        border-radius: 14px;
+
+        background: #e3edf2;
+        color: #315565;
+
+        font-size: 20px;
+
+        cursor: pointer;
+
+        touch-action: manipulation;
+    }
+
+    .galaxy-controls button:active {
+        transform: scale(0.94);
+    }
+
+    .game-hint {
+        margin: 4px 0 8px;
+
+        color: #718078;
+        font-size: 11px;
+        line-height: 1.5;
+    }
+
+    /* ========================================
+   RESULT
+======================================== */
+
+    .game-result {
+        width: 100%;
+
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+
+        padding-top: 45px;
+    }
+
+    .game-result-icon {
+        font-size: 60px;
+        line-height: 1;
+        margin-bottom: 10px;
+    }
+
+    .game-result h1 {
+        margin: 0 0 8px;
+    }
+
+    .game-result p {
+        margin: 5px 0;
+
+        color: #718078;
+        font-size: 18px;
+    }
+
+    .game-result-score {
+        margin: 10px 0 20px;
+
+        color: #39704b;
+
+        font-size: 30px;
+        font-weight: 700;
+    }
+
+    .back-to-lessons {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+
+        min-height: 46px;
+        padding: 0 22px;
+
+        border-radius: 15px;
+
+        background: #dcecdf;
+        color: #39704b;
+
+        font-size: 13px;
+        font-weight: 700;
+
+        text-decoration: none;
+
+        transition:
+            transform 0.15s ease,
+            box-shadow 0.15s ease;
+    }
+
+    .back-to-lessons:hover {
+        transform: translateY(-2px);
+
+        box-shadow: 0 5px 12px rgba(91, 70, 54, 0.12);
+    }
+
+    /* ========================================
+   FOOTER
+======================================== */
+
+    .site-footer {
+        width: 100%;
+
+        margin-top: auto;
+
+        background: #e8f6ec;
+    }
+
+    .site-footer .footer-inner {
+        width: 100%;
+        min-height: 64px;
+
+        padding: 12px 24px;
+
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+
+    .site-footer .footer-brand {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+    }
+
+    .site-footer .footer-brand img {
+        width: 32px;
+        height: 32px;
+
+        object-fit: contain;
+    }
+
+    .site-footer .footer-brand > div {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+
+        gap: 2px;
+    }
+
+    .site-footer .footer-brand strong {
+        font-size: 13px;
+        line-height: 1.1;
+    }
+
+    .site-footer .footer-brand span {
+        font-size: 10px;
+        line-height: 1.2;
+    }
+
+    .site-footer .footer-links {
+        display: flex;
+        align-items: center;
+        gap: 18px;
+    }
+
+    .site-footer .footer-links a {
+        color: #39704b;
+
+        font-size: 11px;
+        text-decoration: none;
+    }
+
+    .site-footer .footer-bottom {
+        padding: 7px 24px 9px;
+
+        color: #718078;
+
+        font-size: 9px;
+    }
+
+    /* ========================================
+   UTIL
+======================================== */
+
+    .hidden {
+        display: none !important;
+    }
+
+    /* ========================================
+   MOBILE
+======================================== */
+
+    @media (max-width: 600px) {
+        .game-page {
+            min-height: calc(100vh - 70px);
+
+            padding: 8px 14px 0;
+        }
+
+        .game-topbar {
+            margin-bottom: 6px;
+            font-size: 10px;
+        }
+
+        .game-icon {
+            font-size: 40px;
+            margin: 5px 0;
+        }
+
+        .game-content h1 {
+            font-size: 23px;
+        }
+
+        .game-intro-text {
+            margin: 4px 0 12px;
+            font-size: 12px;
+        }
+
+        .start-game-button {
+            min-height: 46px;
+            padding: 0 20px;
+            font-size: 13px;
+        }
+
+        .galaxy-game h1 {
+            margin-bottom: 5px;
+        }
+
+        .galaxy-status {
+            gap: 24px;
+
+            margin: 3px 0 7px;
+
+            font-size: 15px;
+        }
+
+        .galaxy-arena {
+            min-height: 0;
+            height: auto;
+
+            flex: 1;
+
+            margin: 5px 0 6px;
+
+            border-radius: 18px;
+            border-width: 3px;
+        }
+
+        .galaxy-player {
+            width: 90px;
+            height: 90px;
+            bottom: 8px;
+        }
+
+        .galaxy-controls {
+            gap: 14px;
+            margin: 4px 0 1px;
+        }
+
+        .galaxy-controls button {
+            width: 52px;
+            height: 44px;
+        }
+
+        .game-hint {
+            font-size: 10px;
+            margin-bottom: 5px;
+        }
+
+        .game-result {
+            padding-top: 35px;
+        }
+
+        .game-result-icon {
+            font-size: 50px;
+        }
+
+        .game-result p {
+            font-size: 15px;
+        }
+
+        .game-result-score {
+            font-size: 26px;
+        }
+
+        /* FOOTER */
+
+        .site-footer .footer-inner {
+            min-height: auto;
+
+            padding: 10px 14px;
+
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: space-between;
+
+            gap: 8px;
+        }
+
+        .site-footer .footer-brand {
+            gap: 5px;
+        }
+
+        .site-footer .footer-brand img {
+            width: 28px;
+            height: 28px;
+        }
+
+        .site-footer .footer-brand > div {
+            align-items: flex-start;
+            text-align: left;
+            gap: 1px;
+        }
+
+        .site-footer .footer-brand strong {
+            font-size: 11px;
+        }
+
+        .site-footer .footer-brand span {
+            font-size: 8px;
+        }
+
+        .site-footer .footer-links {
+            gap: 10px;
+        }
+
+        .site-footer .footer-links a {
+            font-size: 9px;
+        }
+
+        .site-footer .footer-bottom {
+            padding: 6px 14px 8px;
+            font-size: 8px;
+        }
+    }
+</style>
+
+<script>
+    const intro = document.getElementById("game-intro") as HTMLDivElement;
+
+    const startButton = document.getElementById(
+        "start-game",
+    ) as HTMLButtonElement;
+
+    const galaxyGame = document.getElementById("galaxy-game") as HTMLDivElement;
+
+    const resultScreen = document.getElementById(
+        "game-result",
+    ) as HTMLDivElement;
+
+    startButton.addEventListener("click", startGalaxyGame);
+
+    /* ========================================
+   START GAME
+======================================== */
+
+    function startGalaxyGame() {
+        intro.classList.add("hidden");
+
+        galaxyGame.classList.remove("hidden");
+
+        let galaxyGems = 0;
+        let galaxyLives = 3;
+        let gameRunning = true;
+
+        let playerX = 50;
+
+        let spawnTimer: ReturnType<typeof setTimeout>;
+        let animationFrame = 0;
+
+        const GAME_TIME = 30;
+
+        let timeLeft = GAME_TIME;
+
+        const arena = document.getElementById("galaxy-arena") as HTMLDivElement;
+
+        const player = document.getElementById(
+            "galaxy-player",
+        ) as HTMLImageElement;
+
+        const livesElement = document.getElementById(
+            "galaxy-lives",
+        ) as HTMLElement;
+
+        const gemsElement = document.getElementById(
+            "galaxy-gems",
+        ) as HTMLElement;
+
+        const timeElement = document.getElementById(
+            "galaxy-time",
+        ) as HTMLElement;
+
+        const leftButton = document.getElementById(
+            "galaxy-left",
+        ) as HTMLButtonElement;
+
+        const rightButton = document.getElementById(
+            "galaxy-right",
+        ) as HTMLButtonElement;
+
+        const normalPlaneSrc = "/assets/pesawat.png";
+
+        const explodedPlaneSrc = "/assets/meledak.png";
+
+        /* ========================================
+       PLAYER
+    ======================================== */
+
+        player.style.position = "absolute";
+
+        player.style.width = "125px";
+        player.style.height = "125px";
+
+        player.style.objectFit = "contain";
+
+        player.style.bottom = "12px";
+        player.style.left = "50%";
+
+        player.style.transform = "translateX(-50%)";
+
+        player.style.zIndex = "20";
+
+        player.style.userSelect = "none";
+        player.style.pointerEvents = "none";
+
+        /* ========================================
+       GERAK PESAWAT
+    ======================================== */
+
+        function movePlayer(amount: number) {
+            if (!gameRunning) {
+                return;
+            }
+
+            playerX += amount;
+
+            if (playerX < 8) {
+                playerX = 8;
+            }
+
+            if (playerX > 92) {
+                playerX = 92;
+            }
+
+            player.style.left = `${playerX}%`;
+        }
+
+        leftButton.addEventListener("click", function () {
+            movePlayer(-8);
+        });
+
+        rightButton.addEventListener("click", function () {
+            movePlayer(8);
+        });
+
+        function galaxyKeyboardHandler(event: KeyboardEvent) {
+            if (!gameRunning) {
+                return;
+            }
+
+            if (event.key === "ArrowLeft") {
+                event.preventDefault();
+
+                movePlayer(-6);
+            }
+
+            if (event.key === "ArrowRight") {
+                event.preventDefault();
+
+                movePlayer(6);
+            }
+        }
+
+        document.addEventListener("keydown", galaxyKeyboardHandler);
+
+        /* ========================================
+       COLLISION
+    ======================================== */
+
+        function isColliding(
+            object: HTMLImageElement,
+            player: HTMLImageElement,
+        ) {
+            const objectRect = object.getBoundingClientRect();
+
+            const playerRect = player.getBoundingClientRect();
+
+            const objectPadding = objectRect.width * 0.2;
+
+            const playerPadding = playerRect.width * 0.2;
+
+            const objectLeft = objectRect.left + objectPadding;
+
+            const objectRight = objectRect.right - objectPadding;
+
+            const objectTop = objectRect.top + objectPadding;
+
+            const objectBottom = objectRect.bottom - objectPadding;
+
+            const playerLeft = playerRect.left + playerPadding;
+
+            const playerRight = playerRect.right - playerPadding;
+
+            const playerTop = playerRect.top + playerPadding;
+
+            const playerBottom = playerRect.bottom - playerPadding;
+
+            return !(
+                objectRight < playerLeft ||
+                objectLeft > playerRight ||
+                objectBottom < playerTop ||
+                objectTop > playerBottom
+            );
+        }
+
+        /* ========================================
+       SPAWN GEM / KOMET
+    ======================================== */
+
+        function spawnObject() {
+            if (!gameRunning) {
+                return;
+            }
+
+            const object = document.createElement("img");
+
+            const isGem = Math.random() < 0.55;
+
+            if (isGem) {
+                object.src = "/assets/gem.png";
+
+                object.dataset.type = "gem";
+
+                object.alt = "Gem";
+            } else {
+                object.src = "/assets/komet.png";
+
+                object.dataset.type = "comet";
+
+                object.alt = "Komet";
+            }
+
+            object.style.position = "absolute";
+
+            const objectSize = isGem ? 70 : window.innerWidth <= 600 ? 82 : 246;
+
+            object.style.width = `${objectSize}px`;
+            object.style.height = `${objectSize}px`;
+
+            object.style.objectFit = "contain";
+
+            object.style.left = `${Math.random() * 84 + 8}%`;
+
+            object.style.top = "-70px";
+
+            object.style.zIndex = "10";
+
+            object.style.userSelect = "none";
+
+            object.style.pointerEvents = "none";
+
+            arena.appendChild(object);
+
+            let y = -70;
+
+            const speed = isGem
+                ? 2.8 + Math.random() * 1.5
+                : 3.2 + Math.random() * 1.8;
+
+            function fall() {
+                if (!gameRunning) {
+                    object.remove();
+
+                    return;
+                }
+
+                y += speed;
+
+                object.style.top = `${y}px`;
+
+                /* COLLISION */
+
+                if (isColliding(object, player)) {
+                    /* GEM */
+
+                    if (object.dataset.type === "gem") {
+                        galaxyGems++;
+
+                        gemsElement.textContent = String(galaxyGems);
+
+                        player.animate(
+                            [
+                                {
+                                    transform: "translateX(-50%) scale(1)",
+                                },
+                                {
+                                    transform: "translateX(-50%) scale(1.3)",
+                                },
+                                {
+                                    transform: "translateX(-50%) scale(.95)",
+                                },
+                                {
+                                    transform: "translateX(-50%) scale(1)",
+                                },
+                            ],
+                            {
+                                duration: 350,
+                                easing: "ease-out",
+                            },
+                        );
+
+                        object.remove();
+
+                        return;
+                    }
+
+                    /* KOMET */
+
+                    if (object.dataset.type === "comet") {
+                        galaxyLives--;
+
+                        livesElement.textContent = String(galaxyLives);
+
+                        player.src = explodedPlaneSrc;
+
+                        player.animate(
+                            [
+                                {
+                                    transform: "translateX(-50%) scale(1)",
+                                },
+                                {
+                                    transform: "translateX(-50%) scale(1.15)",
+                                },
+                                {
+                                    transform: "translateX(-50%) scale(1)",
+                                },
+                            ],
+                            {
+                                duration: 500,
+                                easing: "ease-out",
+                            },
+                        );
+
+                        object.remove();
+
+                        if (galaxyLives <= 0) {
+                            setTimeout(function () {
+                                endGame();
+                            }, 600);
+
+                            return;
+                        }
+
+                        setTimeout(function () {
+                            if (gameRunning) {
+                                player.src = normalPlaneSrc;
+                            }
+                        }, 600);
+
+                        return;
+                    }
+                }
+
+                /* KELUAR ARENA */
+
+                if (y > arena.clientHeight + 80) {
+                    object.remove();
+
+                    return;
+                }
+
+                animationFrame = requestAnimationFrame(fall);
+            }
+
+            fall();
+        }
+
+        /* ========================================
+       SPAWN LOOP
+    ======================================== */
+
+        function spawnLoop() {
+            if (!gameRunning) {
+                return;
+            }
+
+            spawnObject();
+
+            const delay = 550 + Math.random() * 650;
+
+            spawnTimer = setTimeout(spawnLoop, delay);
+        }
+
+        /* ========================================
+       TIMER
+    ======================================== */
+
+        const gameTimer = setInterval(function () {
+            if (!gameRunning) {
+                clearInterval(gameTimer);
+
+                return;
+            }
+
+            timeLeft--;
+
+            timeElement.textContent = String(timeLeft);
+
+            if (timeLeft <= 0) {
+                clearInterval(gameTimer);
+
+                endGame();
+            }
+        }, 1000);
+
+        /* ========================================
+       GAME OVER
+    ======================================== */
+
+        function endGame() {
+            if (!gameRunning) {
+                return;
+            }
+
+            gameRunning = false;
+
+            clearTimeout(spawnTimer);
+
+            cancelAnimationFrame(animationFrame);
+
+            document.removeEventListener("keydown", galaxyKeyboardHandler);
+
+            arena.querySelectorAll("img").forEach((object) => {
+                object.remove();
+            });
+
+            resultScreen.innerHTML = `
+
+            <div class="game-result-icon">
+                🏆
+            </div>
+
+            <h1>
+                Perang Galaksi Selesai!
+            </h1>
+
+            <p>
+                💎 Gem terkumpul:
+                <strong>
+                    ${galaxyGems}
+                </strong>
+            </p>
+
+            <div class="game-result-score">
+
+                ${
+                    galaxyGems >= 15
+                        ? "🌟 Mimi luar biasa!"
+                        : galaxyGems >= 8
+                          ? "🚀 Hebat!"
+                          : "💪 Terus berlatih!"
+                }
+
+            </div>
+
+            <a
+                href="/belajar/kelas-2"
+                class="back-to-lessons"
+            >
+                ← Kembali ke Latihan
+            </a>
+
+        `;
+
+            galaxyGame.classList.add("hidden");
+
+            resultScreen.classList.remove("hidden");
+        }
+
+        /* ========================================
+       START
+    ======================================== */
+
+        playerX = 50;
+
+        player.style.left = "50%";
+
+        spawnLoop();
+    }
+</script>

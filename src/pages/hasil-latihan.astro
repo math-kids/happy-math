@@ -1,0 +1,864 @@
+---
+import MainLayout from "../layouts/MainLayout.astro";
+import Header from "../components/Header.astro";
+---
+
+<MainLayout title="Latihan Selesai - Mimi Matematika">
+
+    <Header />
+
+    <main class="result-page">
+
+        <!-- TOP BAR -->
+
+        <div class="result-topbar">
+
+            <a
+                href="#"
+                id="lessons-link"
+                class="back-button"
+            >
+                ← Pilih latihan
+            </a>
+
+            <div class="game-class" id="game-class">
+                Kelas 2 SD
+            </div>
+
+            <div class="game-score">
+                ⭐ <span id="top-score">0</span>
+            </div>
+
+        </div>
+
+        <!-- BANNER -->
+
+        <section class="result-banner">
+
+            <img
+                src="/assets/banner-latihan.png"
+                alt="Mimi belajar matematika"
+            />
+
+        </section>
+
+        <!-- RESULT -->
+
+        <section class="result-content">
+
+            <div class="result-icon">
+                🎉
+            </div>
+
+            <span class="lesson-badge" id="lesson-badge">
+                Latihan 01
+            </span>
+
+            <h1>
+                Hebat!
+            </h1>
+
+            <p class="finished-text">
+                Latihanmu sudah selesai.
+            </p>
+
+            <div class="score-area">
+
+                <span>
+                    Skor kamu
+                </span>
+
+                <strong id="final-score">
+                    0
+                </strong>
+
+            </div>
+
+            <div class="result-actions">
+
+                <a
+                    href="#"
+                    id="retry-button"
+                    class="result-button retry-button"
+                >
+                    Coba Lagi
+                </a>
+
+                <a
+                    href="/permainan"
+                    class="result-button game-button"
+                >
+                    🎁 Pilih Games
+                </a>
+
+                <a
+                    href="#"
+                    id="lessons-button"
+                    class="result-button lesson-button"
+                >
+                    Pilih Latihan
+                </a>
+
+            </div>
+
+        </section>
+
+        <!-- FOOTER -->
+
+        <footer class="site-footer">
+
+            <div class="footer-inner">
+
+                <div class="footer-brand">
+
+                    <img
+                        src="/assets/mimi.png"
+                        alt="Mimi Matematika"
+                    />
+
+                    <div>
+
+                        <strong>
+                            Mimi Matematika
+                        </strong>
+
+                        <span>
+                            Langkah kecil hari ini, prestasi besar nanti.
+                        </span>
+
+                    </div>
+
+                </div>
+
+                <div class="footer-links">
+
+                    <a href="/belajar">
+                        Belajar
+                    </a>
+
+                    <a href="/ngobrol">
+                        Mimi Ngobrol
+                    </a>
+
+                    <a href="/permainan">
+                        Permainan
+                    </a>
+
+                </div>
+
+            </div>
+
+            <div class="footer-bottom">
+                © 2026 Mimi Matematika
+            </div>
+
+        </footer>
+
+    </main>
+
+</MainLayout>
+
+<style>
+
+/* ========================================
+   PAGE
+======================================== */
+
+.result-page {
+
+    width: 100%;
+
+    max-width: 1180px;
+
+    margin: 0 auto;
+
+    padding: 0 24px;
+
+    box-sizing: border-box;
+
+}
+
+
+/* ========================================
+   TOP BAR
+======================================== */
+
+.result-topbar {
+
+    display: grid;
+
+    grid-template-columns:
+        1fr
+        auto
+        1fr;
+
+    align-items: center;
+
+    min-height: 30px;
+
+}
+
+
+.back-button {
+
+    justify-self: start;
+
+    color: #39704b;
+
+    text-decoration: none;
+
+    font-size: 12px;
+
+    font-weight: 600;
+
+}
+
+
+.back-button:hover {
+
+    text-decoration: underline;
+
+}
+
+
+.game-class {
+
+    color: #587264;
+
+    font-size: 12px;
+
+    font-weight: 700;
+
+}
+
+
+.game-score {
+
+    justify-self: end;
+
+    padding: 6px 13px;
+
+    background: #fff4d7;
+
+    border-radius: 18px;
+
+    color: #7b6840;
+
+    font-size: 12px;
+
+    font-weight: 700;
+
+}
+
+
+/* ========================================
+   BANNER
+======================================== */
+
+.result-banner {
+
+    width: 100%;
+
+    overflow: hidden;
+
+    margin: 0;
+
+    line-height: 0;
+
+}
+
+
+.result-banner img {
+
+    display: block;
+
+    width: 100%;
+
+    height: auto;
+
+    max-width: 100%;
+
+}
+
+
+/* ========================================
+   RESULT CONTENT
+======================================== */
+
+.result-content {
+
+    min-height: 355px;
+
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: center;
+
+    justify-content: center;
+
+    text-align: center;
+
+    background: #f3faf5;
+
+    padding: 28px 20px 34px;
+
+    box-sizing: border-box;
+
+}
+
+
+.result-icon {
+
+    font-size: 48px;
+
+    line-height: 1;
+
+    margin-bottom: 12px;
+
+}
+
+
+.lesson-badge {
+
+    display: inline-block;
+
+    padding: 5px 11px;
+
+    background: #dff3e5;
+
+    color: #39704b;
+
+    border-radius: 20px;
+
+    font-size: 10px;
+
+    font-weight: 700;
+
+}
+
+
+.result-content h1 {
+
+    margin: 10px 0 4px;
+
+    color: #173f4b;
+
+    font-size: 32px;
+
+    line-height: 1.1;
+
+}
+
+
+.finished-text {
+
+    margin: 0;
+
+    color: #718078;
+
+    font-size: 12px;
+
+}
+
+
+/* ========================================
+   SCORE
+======================================== */
+
+.score-area {
+
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: center;
+
+    gap: 3px;
+
+    margin-top: 16px;
+
+}
+
+
+.score-area span {
+
+    color: #718078;
+
+    font-size: 12px;
+
+}
+
+
+.score-area strong {
+
+    color: #39704b;
+
+    font-size: 29px;
+
+    line-height: 1;
+
+}
+
+
+/* ========================================
+   BUTTONS
+======================================== */
+
+.result-actions {
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    gap: 8px;
+
+    margin-top: 18px;
+
+}
+
+
+.result-button {
+
+    display: inline-flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    min-height: 38px;
+
+    padding: 0 17px;
+
+    border-radius: 13px;
+
+    text-decoration: none;
+
+    font-size: 11px;
+
+    font-weight: 600;
+
+    box-sizing: border-box;
+
+    transition:
+        transform 0.15s;
+
+}
+
+
+.result-button:hover {
+
+    transform:
+        translateY(-1px);
+
+}
+
+
+.retry-button {
+
+    background: #dbe8d9;
+
+    color: #526258;
+
+}
+
+
+.game-button {
+
+    background: #f5d99a;
+
+    color: #70551d;
+
+}
+
+
+.lesson-button {
+
+    background: #edf1ee;
+
+    color: #526258;
+
+}
+
+
+/* ========================================
+   FOOTER
+======================================== */
+
+.site-footer {
+
+    width: 100%;
+
+    background: #e8f6ec;
+
+}
+
+
+.footer-inner {
+
+    width: 100%;
+
+    min-height: 64px;
+
+    padding: 12px 24px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    box-sizing: border-box;
+
+}
+
+
+.footer-brand {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 8px;
+
+}
+
+
+.footer-brand img {
+
+    width: 32px;
+
+    height: 32px;
+
+    object-fit: contain;
+
+}
+
+
+.footer-brand > div {
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 2px;
+
+}
+
+
+.footer-brand strong {
+
+    color: #244b38;
+
+    font-size: 13px;
+
+    line-height: 1.1;
+
+}
+
+
+.footer-brand span {
+
+    color: #708279;
+
+    font-size: 10px;
+
+    line-height: 1.2;
+
+}
+
+
+.footer-links {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 18px;
+
+}
+
+
+.footer-links a {
+
+    color: #39704b;
+
+    font-size: 11px;
+
+    font-weight: 600;
+
+    text-decoration: none;
+
+}
+
+
+.footer-links a:hover {
+
+    text-decoration: underline;
+
+}
+
+
+.footer-bottom {
+
+    padding: 7px 24px 9px;
+
+    text-align: center;
+
+    color: #8a9990;
+
+    font-size: 9px;
+
+    border-top:
+        1px solid rgba(
+            80,
+            120,
+            90,
+            0.06
+        );
+
+}
+
+
+/* ========================================
+   MOBILE
+======================================== */
+
+@media (max-width: 600px) {
+
+    .result-page {
+
+        padding: 0 14px;
+
+    }
+
+
+    .result-topbar {
+
+        min-height: 28px;
+
+    }
+
+
+    .back-button {
+
+        font-size: 11px;
+
+    }
+
+
+    .game-class {
+
+        font-size: 10px;
+
+    }
+
+
+    .game-score {
+
+        padding: 5px 10px;
+
+        font-size: 10px;
+
+    }
+
+
+    .result-banner {
+
+        border-radius: 18px;
+
+    }
+
+
+    .result-content {
+
+        min-height: 370px;
+
+        padding:
+            25px
+            14px
+            32px;
+
+    }
+
+
+    .result-icon {
+
+        font-size: 44px;
+
+    }
+
+
+    .result-content h1 {
+
+        font-size: 29px;
+
+    }
+
+
+    .finished-text {
+
+        font-size: 11px;
+
+    }
+
+
+    .score-area {
+
+        margin-top: 15px;
+
+    }
+
+
+    .result-actions {
+
+        width: 100%;
+
+        flex-direction: column;
+
+        gap: 7px;
+
+    }
+
+
+    .result-button {
+
+        width: 100%;
+
+        min-height: 42px;
+
+        font-size: 11px;
+
+    }
+
+
+    .footer-inner {
+
+        padding: 14px;
+
+        flex-direction: column;
+
+        align-items: flex-start;
+
+        gap: 12px;
+
+    }
+
+
+    .footer-links {
+
+        gap: 14px;
+
+    }
+
+
+    .footer-links a {
+
+        font-size: 9px;
+
+    }
+
+
+    .footer-bottom {
+
+        padding:
+            8px
+            14px
+            10px;
+
+    }
+
+}
+
+</style>
+
+<script>
+    const params = new URLSearchParams(window.location.search);
+
+    const kelas = params.get("kelas") || "2";
+    const latihan = params.get("latihan") || "01";
+    const skor = params.get("skor") || "0";
+
+    const slugMap: Record<string, string> = {
+        "2-01": "menghitung-benda",
+        "2-02": "menghitung-maju-mundur",
+        "2-03": "nilai-tempat",
+        "2-04": "penjumlahan-satuan",
+        "2-05": "penjumlahan-puluhan",
+        "2-06": "penjumlahan-bersusun",
+        "2-07": "pengurangan-puluhan"
+    };
+
+    const key = `${kelas}-${latihan}`;
+    const slug = slugMap[key];
+
+    // Halaman daftar latihan sesuai kelas
+    const lessonsUrl = `/belajar/kelas-${kelas}`;
+
+    const gameClass =
+        document.getElementById("game-class");
+
+    const lessonBadge =
+        document.getElementById("lesson-badge");
+
+    const topScore =
+        document.getElementById("top-score");
+
+    const finalScore =
+        document.getElementById("final-score");
+
+    const retryButton =
+        document.getElementById("retry-button") as HTMLAnchorElement | null;
+
+    const lessonsLink =
+        document.getElementById("lessons-link") as HTMLAnchorElement | null;
+
+    const lessonsButton =
+        document.getElementById("lessons-button") as HTMLAnchorElement | null;
+
+
+    // Kelas
+    if (gameClass) {
+        gameClass.textContent = `Kelas ${kelas} SD`;
+    }
+
+
+    // Latihan
+    if (lessonBadge) {
+        lessonBadge.textContent = `Latihan ${latihan}`;
+    }
+
+
+    // Skor atas
+    if (topScore) {
+        topScore.textContent = skor;
+    }
+
+
+    // Skor akhir
+    if (finalScore) {
+        finalScore.textContent = skor;
+    }
+
+
+    // Coba Lagi
+    if (retryButton) {
+        retryButton.href = slug
+            ? `/belajar/kelas-${kelas}/${slug}`
+            : lessonsUrl;
+    }
+
+
+    // Pilih latihan atas
+    if (lessonsLink) {
+        lessonsLink.href = lessonsUrl;
+    }
+
+
+    // Pilih latihan bawah
+    if (lessonsButton) {
+        lessonsButton.href = lessonsUrl;
+    }
+</script>

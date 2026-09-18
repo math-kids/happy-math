@@ -1,0 +1,1162 @@
+---
+import MainLayout from "../../../layouts/MainLayout.astro";
+import Header from "../../../components/Header.astro";
+---
+
+<MainLayout title="Menghitung Benda di Alam — Mimi Matematika">
+    <Header />
+
+    <main class="game-page">
+        <!-- TOP BAR -->
+
+        <div class="game-topbar">
+            <a href="/belajar/kelas-2" class="back-button"> ← Pilih latihan </a>
+
+            <div class="game-class">Kelas 2 SD</div>
+
+            <div class="game-score">
+                ⭐ <span id="score">0</span>
+            </div>
+        </div>
+
+        <!-- BANNER LATIHAN -->
+
+        <section class="exercise-banner">
+            <img
+                src="/assets/banner-latihan.png"
+                alt="Mimi belajar matematika"
+            />
+        </section>
+
+        <!-- INFO LATIHAN -->
+
+        <div class="exercise-info">
+            <div>
+                <span class="lesson-badge"> Latihan 01 </span>
+
+                <h1>Menghitung Benda di Alam</h1>
+
+                <p>Hitung jumlah benda yang ada di gambar.</p>
+            </div>
+
+            <div id="progress" class="progress">Soal 1 / 1</div>
+        </div>
+
+        <!-- MIMI -->
+
+        <section id="mimi-area">
+            <div id="mimi">
+                <img id="mimi-image" src="/assets/mimi.png" alt="Mimi" />
+            </div>
+
+            <div id="mimi-message" class="mimi-message">
+                <strong>Mimi</strong>
+
+                <p>Ayo hitung benda-bendanya! 🌿</p>
+            </div>
+        </section>
+
+        <!-- SOAL -->
+
+        <section class="question-card">
+            <div class="question-box">
+                <div id="question">🌿 🌿 🌿</div>
+            </div>
+        </section>
+
+        <!-- JAWABAN -->
+
+        <section class="answers">
+            <button type="button"></button>
+            <button type="button"></button>
+            <button type="button"></button>
+            <button type="button"></button>
+        </section>
+
+        <!-- HASIL -->
+
+        <section id="result-screen" class="result-screen hidden">
+            <div class="result-icon">🎉</div>
+
+            <span class="lesson-badge"> Latihan 01 </span>
+
+            <h1>Hebat!</h1>
+
+            <p>Latihanmu sudah selesai.</p>
+
+            <div class="result-score">
+                <span> Skor kamu </span>
+
+                <strong id="final-score"> 0 </strong>
+            </div>
+
+            <div class="result-actions">
+                <button id="play-again" type="button"> Coba Lagi </button>
+
+                <a href="/permainan" class="choose-game"> 🎁 Pilih Games </a>
+
+                <a href="/belajar/kelas-2" class="back-to-lessons">
+                    Pilih Latihan
+                </a>
+            </div>
+        </section>
+    </main>
+
+    <!-- FOOTER -->
+
+    <footer class="site-footer">
+        <div class="footer-inner">
+            <div class="footer-brand">
+                <img src="/assets/mimi.png" alt="Mimi Matematika" />
+
+                <div>
+                    <strong> Mimi Matematika </strong>
+
+                    <span> Langkah kecil hari ini, prestasi besar nanti. </span>
+                </div>
+            </div>
+
+            <div class="footer-links">
+                <a href="/belajar"> Belajar </a>
+
+                <a href="/ngobrol"> Mimi Ngobrol </a>
+
+                <a href="/permainan"> Permainan </a>
+            </div>
+        </div>
+
+        <div class="footer-bottom">© 2026 Mimi Matematika</div>
+    </footer>
+</MainLayout>
+
+<style>
+    /* ========================================
+   GAME PAGE
+======================================== */
+
+    .game-page {
+        width: 100%;
+        max-width: 1180px;
+        margin: 0 auto;
+        padding: 0 24px 12px;
+        background: #f3faf5;
+    }
+
+    /* ========================================
+   TOP BAR
+======================================== */
+
+    .game-topbar {
+        display: grid;
+        grid-template-columns: 1fr auto 1fr;
+        align-items: center;
+        margin-bottom: 0;
+    }
+
+    .back-button {
+        justify-self: start;
+        color: #39704b;
+        text-decoration: none;
+        font-size: 13px;
+        font-weight: 600;
+    }
+
+    .back-button:hover {
+        text-decoration: underline;
+    }
+
+    .game-class {
+        color: #587264;
+        font-size: 13px;
+        font-weight: 700;
+    }
+
+    .game-score {
+        justify-self: end;
+        padding: 7px 13px;
+        background: #fff4d7;
+        border-radius: 16px;
+        color: #7b6840;
+        font-size: 13px;
+        font-weight: 700;
+    }
+
+    /* ========================================
+   BANNER
+======================================== */
+
+    .exercise-banner {
+        width: 100%;
+        overflow: hidden;
+        margin: 0;
+        line-height: 0;
+        max-height: 300px;
+    }
+
+    .exercise-banner img {
+        display: block;
+        width: 100%;
+        height: auto;
+        max-width: 100%;
+        margin-top: -55px;
+        margin-bottom: -55px;
+    }
+
+    /* ========================================
+   INFO LATIHAN
+======================================== */
+
+    .exercise-info {
+        display: flex;
+        align-items: flex-end;
+        justify-content: space-between;
+        gap: 20px;
+        margin-bottom: 0;
+    }
+
+    .lesson-badge {
+        display: inline-block;
+        padding: 5px 10px;
+        background: #dff3e5;
+        color: #39704b;
+        border-radius: 20px;
+        font-size: 10px;
+        font-weight: 700;
+    }
+
+    .exercise-info h1 {
+        margin: 0;
+        color: #173f4b;
+        font-size: 25px;
+        line-height: 1.15;
+    }
+
+    .exercise-info p {
+        margin: 0;
+        color: #718078;
+        font-size: 12px;
+    }
+
+    .progress {
+        flex-shrink: 0;
+        color: #8b918b;
+        font-size: 12px;
+        font-weight: 600;
+    }
+
+    /* ========================================
+   MIMI
+======================================== */
+
+    #mimi-area {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
+        min-height: 52px;
+        margin: 0 0 3px;
+    }
+
+    #mimi {
+        flex-shrink: 0;
+    }
+
+    #mimi-image {
+        display: block;
+        width: 50px;
+        height: 50px;
+        object-fit: contain;
+    }
+
+    .mimi-message {
+        min-width: 190px;
+        padding: 8px 14px;
+        background: #edf3eb;
+        border-radius: 16px;
+        color: #526258;
+    }
+
+    .mimi-message strong {
+        display: block;
+        margin-bottom: 2px;
+        color: #6d8a78;
+        font-size: 12px;
+    }
+
+    .mimi-message p {
+        margin: 0;
+        font-size: 13px;
+    }
+
+    .mimi-message.wrong-message {
+        background: #f8d7d7;
+        color: #8f3f3f;
+    }
+
+    .mimi-message.wrong-message strong {
+        color: #a94b4b;
+    }
+
+    /* ========================================
+   MIMI ANIMATION
+======================================== */
+
+    #mimi.correct {
+        animation: mimiJump 0.7s ease;
+    }
+
+    #mimi.wrong {
+        animation: mimiShake 0.45s ease;
+    }
+
+    @keyframes mimiJump {
+        0% {
+            transform: translateY(0);
+        }
+
+        40% {
+            transform: translateY(-10px);
+        }
+
+        70% {
+            transform: translateY(-4px);
+        }
+
+        100% {
+            transform: translateY(0);
+        }
+    }
+
+    @keyframes mimiShake {
+        0%,
+        100% {
+            transform: translateX(0);
+        }
+
+        25% {
+            transform: translateX(-5px);
+        }
+
+        75% {
+            transform: translateX(5px);
+        }
+    }
+
+    /* ========================================
+   QUESTION
+======================================== */
+
+    .question-card {
+        background: #f8f3e9;
+        border-radius: 20px;
+        padding: 12px;
+        margin-bottom: 8px;
+    }
+
+    .question-instruction {
+        margin: 0 0 7px;
+        text-align: center;
+        color: #7c837c;
+        font-size: 12px;
+    }
+
+    .question-box {
+        min-height: 135px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 12px;
+        background: #fffdf9;
+        border-radius: 17px;
+        overflow: hidden;
+    }
+
+    #question {
+        width: 100%;
+        color: #29372f;
+        text-align: center;
+        font-size: 38px;
+        font-weight: 700;
+        line-height: 1.25;
+    }
+
+    /* ========================================
+   COUNTING OBJECTS
+======================================== */
+
+    .counting-objects {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+        max-width: 800px;
+        margin: 0 auto;
+    }
+
+    .counting-object {
+        font-size: 40px;
+        line-height: 1;
+    }
+
+    /* ========================================
+   ANSWERS
+======================================== */
+
+    .answers {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 8px;
+        width: 100%;
+    }
+
+    .answers button {
+        width: 100%;
+        min-height: 50px;
+        border: none;
+        border-radius: 14px;
+        background: #edf3ee;
+        color: #263f35;
+        font-size: 21px;
+        font-weight: 700;
+        cursor: pointer;
+        transition:
+            transform 0.15s,
+            box-shadow 0.15s,
+            background 0.15s;
+    }
+
+    .answers button:hover {
+        background: #e1ebe2;
+        transform: translateY(-2px);
+        box-shadow: 0 5px 14px rgba(50, 70, 55, 0.08);
+    }
+
+    .answers button:active {
+        transform: scale(0.97);
+    }
+
+    .answers button:disabled {
+        cursor: default;
+    }
+
+    /* ========================================
+   RESULT
+======================================== */
+
+    .result-screen {
+        padding: 40px 20px;
+        text-align: center;
+    }
+
+    .result-icon {
+        margin-bottom: 10px;
+        font-size: 52px;
+    }
+
+    .result-screen h1 {
+        margin: 12px 0 5px;
+        color: #173f4b;
+        font-size: 34px;
+    }
+
+    .result-screen > p {
+        margin: 0;
+        color: #718078;
+        font-size: 14px;
+    }
+
+    .result-score {
+        display: flex;
+        flex-direction: column;
+        gap: 4px;
+        margin: 18px 0;
+        color: #718078;
+        font-size: 14px;
+    }
+
+    .result-score strong {
+        color: #39704b;
+        font-size: 30px;
+    }
+
+    .result-actions {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
+    }
+
+    #play-again,
+    .back-to-lessons {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        min-height: 42px;
+        padding: 0 20px;
+        border-radius: 14px;
+        font-size: 13px;
+        font-weight: 700;
+        text-decoration: none;
+        cursor: pointer;
+    }
+    .choose-game {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        min-height: 44px;
+        padding: 0 20px;
+        border-radius: 14px;
+        background: #f3d9a5;
+        color: #5b4636;
+        font-size: 13px;
+        font-weight: 700;
+        text-decoration: none;
+        cursor: pointer;
+        transition: transform 0.15s ease;
+    }
+
+    .choose-game:hover {
+        transform: translateY(-2px);
+    }
+
+    #play-again {
+        border: none;
+        background: #dbe8d9;
+        color: #45604e;
+    }
+
+    .back-to-lessons {
+        background: #edf3ee;
+        color: #45604e;
+    }
+
+    /* ========================================
+   FOOTER
+======================================== */
+
+    .site-footer {
+        width: 100%;
+        max-width: 1180px;
+        margin: 0 auto;
+        background: #e8f6ec;
+    }
+
+    .footer-inner {
+        width: 100%;
+        min-height: 64px;
+        padding: 12px 24px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+
+    .footer-brand {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+    }
+
+    .footer-brand img {
+        width: 32px;
+        height: 32px;
+        object-fit: contain;
+    }
+
+    .footer-brand > div {
+        display: flex;
+        flex-direction: column;
+        gap: 2px;
+    }
+
+    .footer-brand strong {
+        color: #244b38;
+        font-size: 13px;
+        line-height: 1.1;
+    }
+
+    .footer-brand span {
+        color: #708279;
+        font-size: 10px;
+        line-height: 1.2;
+    }
+
+    .footer-links {
+        display: flex;
+        align-items: center;
+        gap: 18px;
+    }
+
+    .footer-links a {
+        color: #39704b;
+        font-size: 11px;
+        font-weight: 600;
+        text-decoration: none;
+    }
+
+    .footer-links a:hover {
+        text-decoration: underline;
+    }
+
+    .footer-bottom {
+        padding: 7px 24px 9px;
+        text-align: center;
+        color: #8a9990;
+        font-size: 9px;
+        border-top: 1px solid rgba(80, 120, 90, 0.06);
+    }
+
+    /* ========================================
+   HIDDEN
+======================================== */
+
+    .hidden {
+        display: none !important;
+    }
+
+    /* ========================================
+   MOBILE
+======================================== */
+
+    @media (max-width: 600px) {
+        .game-page {
+            padding: 0 14px 20px;
+        }
+
+        /* TOP BAR */
+
+        .game-topbar {
+            margin-bottom: 0;
+        }
+
+        .game-class {
+            font-size: 11px;
+        }
+
+        .game-score {
+            padding: 7px 10px;
+            font-size: 12px;
+        }
+
+        /* BANNER */
+
+        .exercise-banner {
+            width: 100%;
+            height: auto;
+            overflow: visible;
+            margin: 0;
+            padding: 0;
+            line-height: 0;
+        }
+
+        .exercise-banner img {
+            display: block;
+            width: 100%;
+            height: auto;
+            max-width: 100%;
+            margin: 0;
+        }
+
+        /* INFO LATIHAN */
+
+        .exercise-info {
+            align-items: flex-start;
+            flex-direction: column;
+            gap: 3px;
+            margin: 0 0 2px;
+        }
+
+        .exercise-info h1 {
+            margin: 0;
+            font-size: 22px;
+            line-height: 1.15;
+        }
+
+        .exercise-info p {
+            margin: 0;
+            font-size: 12px;
+        }
+
+        .progress {
+            align-self: flex-end;
+        }
+
+        /* MIMI */
+
+        #mimi-area {
+            gap: 8px;
+            min-height: 52px;
+            margin: 0 0 3px;
+        }
+
+        #mimi-image {
+            width: 50px;
+            height: 50px;
+        }
+
+        .mimi-message {
+            min-width: 0;
+            width: 100%;
+            padding: 7px 11px;
+        }
+
+        .mimi-message strong {
+            font-size: 12px;
+        }
+
+        .mimi-message p {
+            font-size: 12px;
+        }
+
+        /* SOAL */
+
+        .question-card {
+            padding: 10px;
+            margin-bottom: 8px;
+            border-radius: 18px;
+        }
+
+        .question-box {
+            min-height: 135px;
+            padding: 10px 8px;
+            border-radius: 16px;
+        }
+
+        #question {
+            font-size: clamp(28px, 9vw, 38px);
+        }
+
+        .counting-object {
+            font-size: 36px;
+        }
+
+        /* JAWABAN */
+
+        .answers {
+            gap: 7px;
+        }
+
+        .answers button {
+            min-height: 52px;
+            font-size: 20px;
+        }
+
+        /* HASIL */
+
+        .result-actions {
+            flex-direction: column;
+        }
+
+        #play-again,
+        .choose-game,
+        .back-to-lessons {
+            width: 100%;
+        }
+        .choose-game {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 44px;
+            padding: 0 20px;
+            border-radius: 14px;
+            background: #f3d9a5;
+            color: #5b4636;
+            font-size: 13px;
+            font-weight: 700;
+            text-decoration: none;
+            cursor: pointer;
+            transition: transform 0.15s ease;
+        }
+
+        .choose-game:hover {
+            transform: translateY(-2px);
+        }
+
+        /* FOOTER */
+
+        .site-footer .footer-inner {
+            min-height: auto;
+            padding: 10px 14px;
+            flex-direction: row;
+            align-items: center;
+            justify-content: space-between;
+            gap: 8px;
+        }
+
+        .site-footer .footer-brand {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .site-footer .footer-brand img {
+            width: 28px;
+            height: 28px;
+        }
+
+        .site-footer .footer-brand > div {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            text-align: left;
+            gap: 1px;
+        }
+
+        .site-footer .footer-brand strong {
+            font-size: 11px;
+            line-height: 1.1;
+            text-align: left;
+        }
+
+        .site-footer .footer-brand span {
+            font-size: 8px;
+            line-height: 1.2;
+            text-align: left;
+        }
+
+        .site-footer .footer-links {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .site-footer .footer-links a {
+            font-size: 9px;
+        }
+
+        .site-footer .footer-bottom {
+            padding: 6px 14px 8px;
+            font-size: 8px;
+        }
+    }
+</style><script>
+    /* ========================================
+       SETTINGS
+    ======================================== */
+
+    // Sementara 1 untuk testing.
+    // Setelah game stabil → ubah menjadi 10.
+
+    const totalQuestions = 10;
+
+    /* ========================================
+       STATE
+    ======================================== */
+
+    let score = 0;
+
+    let questionNumber = 0;
+
+    let correctAnswer = 0;
+
+    let answering = false;
+
+    /* ========================================
+       ELEMENTS
+    ======================================== */
+
+    const scoreElement = document.getElementById("score")!;
+
+    const progressElement = document.getElementById("progress")!;
+
+    const questionElement = document.getElementById("question")!;
+
+    const answerButtons = document.querySelectorAll(".answers button");
+
+    const mimiElement = document.getElementById("mimi")!;
+
+    const mimiMessage = document.getElementById("mimi-message")!;
+
+    const resultScreen = document.getElementById("result-screen")!;
+
+    const finalScoreElement = document.getElementById("final-score")!;
+
+    const playAgainButton = document.getElementById("play-again")!;
+
+    const exerciseInfo = document.querySelector(".exercise-info")!;
+
+    /* ========================================
+       MIMI MESSAGE
+    ======================================== */
+
+    function setMimiMessage(message: string) {
+        mimiMessage.classList.remove("wrong-message");
+
+        mimiMessage.innerHTML = `
+            <strong>Mimi</strong>
+            <p>${message}</p>
+        `;
+    }
+
+    function setWrongMessage(message: string) {
+        mimiMessage.classList.add("wrong-message");
+
+        mimiMessage.innerHTML = `
+            <strong>Mimi</strong>
+            <p>${message}</p>
+        `;
+    }
+
+    /* ========================================
+       GENERATE QUESTION
+    ======================================== */
+
+    function generateQuestion() {
+        answering = false;
+
+        questionNumber++;
+
+        progressElement.textContent = `Soal ${questionNumber} / ${totalQuestions}`;
+
+        const objects = ["🍎", "🌸", "🍃", "🪨", "🐚", "🌰"];
+
+        const object = objects[Math.floor(Math.random() * objects.length)];
+
+        const amount = Math.floor(Math.random() * 8) + 2;
+
+        correctAnswer = amount;
+
+        const objectHTML = Array.from(
+            { length: amount },
+            () => `<span class="counting-object">${object}</span>`,
+        ).join("");
+
+        questionElement.innerHTML = `
+            <div class="counting-objects">
+                ${objectHTML}
+            </div>
+        `;
+
+        showNormalAnswers(correctAnswer);
+    }
+
+    /* ========================================
+       ANSWERS
+    ======================================== */
+
+    function showNormalAnswers(answer: number) {
+        const answers: number[] = [answer];
+
+        while (answers.length < 4) {
+            const wrongAnswer = answer + Math.floor(Math.random() * 7) - 3;
+
+            if (wrongAnswer >= 0 && !answers.includes(wrongAnswer)) {
+                answers.push(wrongAnswer);
+            }
+        }
+
+        answers.sort(() => Math.random() - 0.5);
+
+        answerButtons.forEach((button, index) => {
+            const answerButton = button as HTMLButtonElement;
+
+            answerButton.disabled = false;
+
+            answerButton.textContent = String(answers[index]);
+
+            answerButton.onclick = () => {
+                checkAnswer(answers[index]);
+            };
+        });
+    }
+
+    /* ========================================
+       CHECK ANSWER
+    ======================================== */
+
+    function checkAnswer(answer: number) {
+        if (answering) {
+            return;
+        }
+
+        if (answer === correctAnswer) {
+            answering = true;
+
+            score += 10;
+
+            scoreElement.textContent = String(score);
+
+            setMimiMessage("Hebat! Jawabanmu benar! 🎉");
+
+            launchConfetti();
+
+            mimiElement.classList.remove("wrong", "correct");
+
+            void mimiElement.offsetWidth;
+
+            mimiElement.classList.add("correct");
+
+            answerButtons.forEach((button) => {
+                (button as HTMLButtonElement).disabled = true;
+            });
+
+            setTimeout(nextQuestion, 800);
+        } else {
+            setWrongMessage("Belum tepat. Coba lagi! 💪");
+
+            mimiElement.classList.remove("correct", "wrong");
+
+            void mimiElement.offsetWidth;
+
+            mimiElement.classList.add("wrong");
+        }
+    }
+
+    /* ========================================
+       NEXT QUESTION
+    ======================================== */
+
+    function nextQuestion() {
+        mimiElement.classList.remove("correct", "wrong");
+
+        if (questionNumber >= totalQuestions) {
+            showResult();
+        } else {
+            setMimiMessage("Ayo hitung benda-bendanya! 🌿");
+
+            generateQuestion();
+        }
+    }
+
+    /* ========================================
+       RESULT
+    ======================================== */
+
+    function showResult() {
+
+    window.location.href =
+        `/hasil-latihan?kelas=2&latihan=01&skor=${score}`;
+
+}
+
+    /* ========================================
+       PLAY AGAIN
+    ======================================== */
+
+    playAgainButton.addEventListener("click", () => {
+        score = 0;
+
+        questionNumber = 0;
+
+        correctAnswer = 0;
+
+        answering = false;
+
+        scoreElement.textContent = "0";
+
+        resultScreen.classList.add("hidden");
+
+        exerciseInfo.classList.remove("hidden");
+
+        document.querySelector("#mimi-area")!.classList.remove("hidden");
+
+        document.querySelector(".question-card")!.classList.remove("hidden");
+
+        document.querySelector(".answers")!.classList.remove("hidden");
+
+        setMimiMessage("Ayo hitung benda-bendanya! 🌿");
+
+        generateQuestion();
+    });
+
+    /* ========================================
+       START
+    ======================================== */
+
+    generateQuestion();
+
+    /* ========================================
+       CONFETTI
+    ======================================== */
+
+    function launchConfetti() {
+        const container = document.createElement("div");
+
+        container.style.position = "fixed";
+
+        container.style.left = "0";
+
+        container.style.top = "0";
+
+        container.style.width = "100vw";
+
+        container.style.height = "100vh";
+
+        container.style.pointerEvents = "none";
+
+        container.style.overflow = "hidden";
+
+        container.style.zIndex = "999999";
+
+        document.body.appendChild(container);
+
+        const colors = [
+            "#7FAF8B",
+            "#E8B86D",
+            "#D98282",
+            "#8FA8C7",
+            "#C99A6B",
+            "#F3C6C6",
+            "#A8D8B9",
+        ];
+
+        for (let i = 0; i < 100; i++) {
+            const piece = document.createElement("div");
+
+            const size = 8 + Math.random() * 7;
+
+            piece.style.position = "absolute";
+
+            piece.style.width = `${size}px`;
+
+            piece.style.height = `${size * 1.5}px`;
+
+            piece.style.backgroundColor =
+                colors[Math.floor(Math.random() * colors.length)];
+
+            piece.style.left = `${Math.random() * 100}vw`;
+
+            piece.style.top = "-30px";
+
+            piece.style.borderRadius = "3px";
+
+            container.appendChild(piece);
+
+            const x = (Math.random() - 0.5) * 300;
+
+            const y = 500 + Math.random() * 400;
+
+            const rotation = 360 + Math.random() * 720;
+
+            piece.animate(
+                [
+                    {
+                        transform: "translate3d(0, 0, 0) rotate(0deg)",
+
+                        opacity: 1,
+                    },
+
+                    {
+                        transform: `translate3d(${x}px, ${y}px, 0) rotate(${rotation}deg)`,
+
+                        opacity: 0,
+                    },
+                ],
+
+                {
+                    duration: 1800 + Math.random() * 1000,
+
+                    delay: Math.random() * 200,
+
+                    easing: "cubic-bezier(.2,.8,.3,1)",
+
+                    fill: "forwards",
+                },
+            );
+        }
+
+        setTimeout(() => {
+            container.remove();
+        }, 3500);
+    }
+</script>
